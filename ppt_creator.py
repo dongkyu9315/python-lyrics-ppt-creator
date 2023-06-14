@@ -1,5 +1,6 @@
 import collections
 import collections.abc
+import os
 
 from pptx import Presentation
 
@@ -12,13 +13,13 @@ class LyricsPptCreator:
     def __init__(self) -> None:
         pass
 
-    def create_lyrics_ppt(self):
+    def create_lyrics_ppt(self) -> str:
         """Method to create lyrics ppt file"""
 
-        ppt = Presentation('resource/template/empty_template.pptx')
+        ppt = Presentation(os.path.abspath('resource/template/empty_template.pptx'))
         lyrics_layout = ppt.slide_layouts[1]
 
-        lyrics_file_path = 'resource/lyrics/test_lyrics.txt'
+        lyrics_file_path = os.path.abspath('resource/lyrics/test_lyrics.txt')
         self.__validate_lyrics_file(lyrics_file_path)
 
         hymn_nums = [0] * 5
@@ -62,9 +63,12 @@ class LyricsPptCreator:
                 ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line.strip()
                 line_in_lyric_slide_counter += 1
 
-        file_name = f'resource/output/E{hymn_nums[0]}_K{hymn_nums[1]}_S{hymn_nums[2]}_C{hymn_nums[3]}.pptx'
-        ppt.save(file_name)
-        print(f'Successfully created a ppt file with name, {file_name}')
+        file_name = f'E{hymn_nums[0]}_K{hymn_nums[1]}_S{hymn_nums[2]}_C{hymn_nums[3]}.pptx'
+        file_path = os.path.abspath(f'resource/output/{file_name}')
+        ppt.save(file_path)
+        print(f'Successfully created a ppt file in path, {file_path}')
+
+        return file_path
 
     def __validate_lyrics_file(self, lyrics_file_path):
         print(f'Validation of the lyrics file, \"{lyrics_file_path}\", is starting')
@@ -89,6 +93,3 @@ but it is {line_in_section_counter} in a section')
 
     def __is_new_section(self, line) -> bool:
         return line.startswith(self.NEW_SECTION_TOKEN)
-
-lyricsPptCreator = LyricsPptCreator()
-lyricsPptCreator.create_lyrics_ppt()
