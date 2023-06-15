@@ -1,7 +1,8 @@
 # python-lyrics-ppt-creator
+
 Python app to create lyrics ppt files
 
-# commands
+# How to set up local workspace for development
 
 Create a virtualenv with python3.9
 
@@ -18,16 +19,16 @@ source .env3.9/bin/activate
 Install dependencies
 
 ```
+python3 -m pip install -r requirements.txt
+```
+
+OR
+
+```
 python3 -m pip install pylint
 python3 -m pip install Flask
 python3 -m pip install python-pptx
 python3 -m pip install Werkzeug
-```
-
-Creating requirements.txt file
-
-```
-python3 -m pip freeze > requirements.txt
 ```
 
 Below command runs the flask app
@@ -35,3 +36,16 @@ Below command runs the flask app
 ```
 flask run
 ```
+
+# Miscellaneous Commands
+
+Create requirements.txt file
+
+```
+python3 -m pip freeze > requirements.txt
+```
+
+# References
+
+python-pptx: https://python-pptx.readthedocs.io/en/latest/
+Flask: https://flask.palletsprojects.com/en/2.3.x/
