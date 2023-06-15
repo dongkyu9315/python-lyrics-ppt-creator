@@ -23,7 +23,7 @@ class LyricsPptCreator:
         testing = False
         lyrics_file_path = ''
         if testing:
-            lyrics_file_path = os.path.abspath('resource/lyrics/test_lyrics.txt')
+            lyrics_file_path = os.path.abspath('app/static/sample/lyrics/test_lyrics.txt')
         else:
             lyrics_file_path = input_file_path
         self.__validate_lyrics_file(lyrics_file_path)
@@ -79,7 +79,7 @@ class LyricsPptCreator:
         return output_file_path
 
     def __get_template_file_path(self):
-        return os.path.abspath('resource/template/empty_template.pptx')
+        return os.path.abspath('app/static/template/empty_template.pptx')
 
     def __get_output_file_directory(self, uuid_id):
         return os.path.abspath(f'resource/output/{uuid_id}')
