@@ -66,6 +66,6 @@ def create_app():
     def __delete_file_and_its_directory(file_path):
         directory_path = os.path.dirname(file_path)
         print(f'Deleting the file, {file_path}, and its directory')
-        shutil.rmtree(directory_path)
+        shutil.rmtree(directory_path, ignore_errors=True)
 
     return app
