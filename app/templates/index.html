@@ -1,11 +1,231 @@
+<!DOCTYPE HTML>
+<!--
+    Stellar by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        <form enctype = "multipart/form-data" action = "/save_input/" method = "POST">
-            <p>File: <input type = "file" name = "filename" /></p>
-            <p><input type = "submit" value = "Upload" /></p>
-        </form>
-    </body>
+
+<head>
+	<title>Hymn Lyrics PPT Creator</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}" />
+	<noscript>
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/noscript.css') }}" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1>Hymn Lyrics PPT Creator</h1>
+			<p>Free website to create Hymn Lyrics PPT files</p>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="#upload">Get Started</a></li>
+				<li><a href="#how_to_use">How to Use</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Get Started -->
+			<section id="upload" class="main">
+				<header class="major">
+					<h2>Create the Hymn Lyrics PPT file</h2>
+					<p>Upload the lyrics text file below</p>
+				</header>
+				<footer class="major">
+					<form enctype="multipart/form-data" action="/save_input/" method="POST">
+						<p>File: <input type="file" name="filename" /></p>
+						<p><input type="submit" value="Upload / Convert / Download" /></p>
+					</form>
+				</footer>
+			</section>
+
+			<!-- How to Use -->
+			<section id="how_to_use" class="main">
+				<header class="major">
+					<h2>How to use this website</h2>
+				</header>
+				<div class="spotlight">
+					<div class="content">
+						<h3><b>1. Create a lyrics text file</b></h3>
+						<p>
+							- Create an empty text file with extension <b>.txt</b><br />
+						</p>
+						<h3><b>2. Fill out the title section</b></h3>
+						<p>
+							- The first 4 lines are the titles of the hymn in the order of English, Spanish, Korean, and
+							Chinese<br />
+							- For each line, hymn number comes first, the title comes after, and a whitespace separates
+							them<br />
+							- If the hymn does not have a number, the line can start with a whitespace (or any symbol
+							that can be written in place of the number)<br />
+							- e.g. (for below input, '#' will be written for Chinese hymn number)<br />
+						</p>
+						<p style="background-color:#091238; color:#FFFFFF">
+							340 'Tis so Sweet to Trust in Jesus<br />
+							206 ¡Oh Cuan Dulce Es Fiar en Cristo!<br />
+							340 구주 예수 의지함이<br />
+							# 依靠救主耶稣<br />
+						</p>
+						<p>
+							- If a language is missing, you MUST leave the line as empty<br />
+							- e.g. (for below input, spanish and chinese are missing)<br />
+						</p>
+						<p style="background-color:#091238; color:#FFFFFF">
+							340 'Tis so Sweet to Trust in Jesus<br />
+							<br />
+							340 구주 예수 의지함이<br />
+							<br />
+						</p>
+						<h3><b>3. Iteratively fill out the lyrics section</b></h3>
+						<p>
+							- A slide in the PPT consists of 2 sections<br />
+							- Each section starts with a '<b>-</b>' symbol<br />
+							- A first section of of a slide may or may not have a verse number after '<b>-</b>' symbol
+							with a whitespace in between<br />
+						</p>
+						<p style="background-color:#091238; color:#FFFFFF">
+							- 1<br />
+							'Tis so sweet to trust in Je-sus,<br />
+							Oh, cuan dul-ce es fiar en Cris-to<br />
+							구주 예수 의지함이<br />
+							救主耶稣我依靠<br />
+							-<br />
+							Just to take Him at His Word;<br />
+							Y en-tre-gar-se to-do a el<br />
+							심히 기쁜 일일세<br />
+							我很开心。<br />
+						</p>
+						<p>
+							- If a language is missing, you MUST leave the line as empty<br />
+							- e.g. (for below input, spanish and chinese are missing)<br />
+						</p>
+						<p style="background-color:#091238; color:#FFFFFF">
+							- 1<br />
+							'Tis so sweet to trust in Je-sus,<br />
+							<br />
+							구주 예수 의지함이<br />
+							<br />
+							-<br />
+							Just to take Him at His Word;<br />
+							<br />
+							심히 기쁜 일일세<br />
+							<br />
+						</p>
+						<h3><b>4. Finally, save the file</b></h3>
+						<p>
+							- Example of a complete lyrics text file<br />
+						</p>
+						<p style="background-color:#091238; color:#FFFFFF">
+							340 'Tis so Sweet to Trust in Jesus<br />
+							206 ¡Oh Cuan Dulce Es Fiar en Cristo!<br />
+							340 구주 예수 의지함이<br />
+							# 依靠救主耶稣<br />
+							- 1<br />
+							'Tis so sweet to trust in Je-sus,<br />
+							Oh, cuan dul-ce es fiar en Cris-to<br />
+							구주 예수 의지함이<br />
+							救主耶稣我依靠<br />
+							-<br />
+							Just to take Him at His Word;<br />
+							Y en-tre-gar-se to-do a el<br />
+							심히 기쁜 일일세<br />
+							我很开心。<br />
+							-<br />
+							Just to rest up-on His prom-ise;<br />
+							Es-pe-rar en sus pro-me-sas<br />
+							허락하심 받았으니<br />
+							给予许可<br />
+							-<br />
+							Just to know, "Thus saith the Lord"<br />
+							Y en sus sen-das ser-le fiel!<br />
+							의심 아주 없도다<br />
+							毫无疑问<br />
+							- 2<br />
+							'Tis so sweet to trust in Je-sus,<br />
+							Oh, cuan dul-ce es fiar en Cris-to<br />
+							구주 예수 의지함이<br />
+							救主耶稣我依靠<br />
+							-<br />
+							Just to take Him at His Word;<br />
+							Y en-tre-gar-se to-do a el<br />
+							심히 기쁜 일일세<br />
+							我很开心。<br />
+							-<br />
+							Just to rest up-on His prom-ise;<br />
+							Es-pe-rar en sus pro-me-sas<br />
+							허락하심 받았으니<br />
+							给予许可<br />
+							-<br />
+							Just to know, "Thus saith the Lord"<br />
+							Y en sus sen-das ser-le fiel!<br />
+							의심 아주 없도다<br />
+							毫无疑问<br />
+						</p>
+						<h3><b>5. Go to the <a href="#upload">Get Started</a> section</b></h3>
+						<h3><b>6. Click 'browse' to find the saved text file</h3>
+						<h3><b>7. Click 'Upload / Convert / Download' button and you will see a pop-up to download
+								a ppt file</b></h3>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
+				<h1>Stellar</h1>
+				<p>Just another free, fully responsive site template<br />built by <a
+						href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a>.</p>
+				<ul class="actions">
+					<li><a href="generic.html" class="button">Learn More</a></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Etiam feugiat</h2>
+				<dl class="alt">
+					<dt>Address</dt>
+					<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
+					<dt>Phone</dt>
+					<dd>(000) 000-0000 x 0000</dd>
+					<dt>Email</dt>
+					<dd><a href="#">information@untitled.tld</a></dd>
+				</dl>
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
+				</ul>
+			</section>
+			<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/jquery.scrollex.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/jquery.scrolly.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/browser.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/breakpoints.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/util.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/main.js') }}"></script>
+
+</body>
+
 </html>
