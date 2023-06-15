@@ -79,13 +79,18 @@ class LyricsPptCreator:
         return output_file_path
 
     def __get_template_file_path(self):
-        return os.path.abspath('app/static/template/empty_template.pptx')
+        working_dir = self.__get_current_directory()
+        return os.path.join(working_dir, 'static/template/empty_template.pptx')
 
     def __get_output_file_directory(self, uuid_id):
-        return os.path.abspath(f'resource/output/{uuid_id}')
+        working_dir = self.__get_current_directory()
+        return os.path.join(os.path.realpath(working_dir + '/../'), f'resource/output/{uuid_id}')
 
     def __get_output_file_path(self, uuid_id, output_file_name):
         return os.path.join(self.__get_output_file_directory(uuid_id), output_file_name)
+
+    def __get_current_directory(self):
+        return os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
     def __validate_lyrics_file(self, lyrics_file_path):
         print(f'Validation of the lyrics file, \"{lyrics_file_path}\", is starting')

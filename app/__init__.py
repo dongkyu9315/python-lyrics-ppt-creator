@@ -57,7 +57,8 @@ def create_app():
         return render_template('error.html', error_type='Invalid Input File Error', error_message=error_message)
 
     def __get_input_file_directory(uuid_id):
-        return os.path.abspath(f'resource/input/{uuid_id}')
+        working_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+        return os.path.join(working_dir, f'resource/input/{uuid_id}')
 
     def __get_input_file_path(uuid_id, input_file_name):
         return os.path.join(__get_input_file_directory(uuid_id), input_file_name)
