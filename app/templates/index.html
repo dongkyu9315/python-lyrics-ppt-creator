@@ -31,6 +31,7 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="#upload">Get Started</a></li>
+				<li><a href="#demo">Try it out</a></li>
 				<li><a href="#how_to_use">How to Use</a></li>
 			</ul>
 		</nav>
@@ -49,6 +50,17 @@
 						<p>File: <input type="file" name="filename" /></p>
 						<p><input type="submit" value="Upload / Convert / Download" /></p>
 					</form>
+				</footer>
+			</section>
+
+			<!-- Get Started -->
+			<section id="demo" class="main">
+				<header class="major">
+					<h2>Try it out with a sample lyrics text file</h2>
+					<p>Download the sample lyrics text file below</p>
+				</header>
+				<footer class="major">
+					<a href="{{ url_for('static',filename='sample/lyrics.txt') }}" download="sample_lyrics.txt">Download</a>
 				</footer>
 			</section>
 
