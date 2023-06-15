@@ -1,5 +1,4 @@
-from app import app 
+"""Module running the flask app"""
+from app import create_app
 
-app.run(
-    debug = True
-)
+application = create_app()

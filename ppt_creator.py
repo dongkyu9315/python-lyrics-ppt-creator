@@ -1,12 +1,11 @@
-import collections
-import collections.abc
+"""Module creating lyrics ppt"""
 import os
 import uuid
 
 from pptx import Presentation
 
 class LyricsPptCreator:
-    """Class to create lyrics ppt file"""
+    """Class creating lyrics ppt file"""
 
     NEW_SECTION_TOKEN = '-'
     NUM_OF_LANGUAGES = 4
@@ -15,9 +14,9 @@ class LyricsPptCreator:
         pass
 
     def create_lyrics_ppt(self, input_file_path) -> str:
-        """Method to create lyrics ppt file"""
+        """Function creating lyrics ppt file"""
 
-        ppt = Presentation(self.__getTemplateFilePath())
+        ppt = Presentation(self.__get_template_file_path())
         lyrics_layout = ppt.slide_layouts[1]
 
         # Flip below boolean to true if you want to test with test_lyrics.txt file
@@ -72,21 +71,21 @@ class LyricsPptCreator:
 
         output_file_name = f'E{hymn_nums[0]}_K{hymn_nums[1]}_S{hymn_nums[2]}_C{hymn_nums[3]}.pptx'
         uuid_id = uuid.uuid4()
-        os.mkdir(self.__getOutputFileDirectory(uuid_id), 0o777)
-        output_file_path = self.__getOutputFilePath(uuid_id, output_file_name)
+        os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
+        output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
         ppt.save(output_file_path)
         print(f'Successfully created a ppt file in path, {output_file_path}')
 
         return output_file_path
 
-    def __getTemplateFilePath(self):
+    def __get_template_file_path(self):
         return os.path.abspath('resource/template/empty_template.pptx')
 
-    def __getOutputFileDirectory(self, uuid_id):
+    def __get_output_file_directory(self, uuid_id):
         return os.path.abspath(f'resource/output/{uuid_id}')
 
-    def __getOutputFilePath(self, uuid_id, output_file_name):
-        return os.path.join(self.__getOutputFileDirectory(uuid_id), output_file_name)
+    def __get_output_file_path(self, uuid_id, output_file_name):
+        return os.path.join(self.__get_output_file_directory(uuid_id), output_file_name)
 
     def __validate_lyrics_file(self, lyrics_file_path):
         print(f'Validation of the lyrics file, \"{lyrics_file_path}\", is starting')
@@ -99,11 +98,9 @@ class LyricsPptCreator:
                     if line_in_section_counter == self.NUM_OF_LANGUAGES:
                         line_in_section_counter = 0
                         continue
-                    else:
-                        raise ValueError(
-                            f'The number of lines between \"{self.NEW_SECTION_TOKEN}\" \
-should always be {self.NUM_OF_LANGUAGES}, \
-but it is {line_in_section_counter} in a section')
+                    raise ValueError(
+                        f'The number of lines between \"{self.NEW_SECTION_TOKEN}\" \
+should always be {self.NUM_OF_LANGUAGES}, but it is {line_in_section_counter} in a section')
 
                 line_in_section_counter += 1
 
