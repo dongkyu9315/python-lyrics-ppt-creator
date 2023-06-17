@@ -35,19 +35,21 @@ class LyricsPptCreator:
 
             line_in_title_slide_counter = 0
             line_in_lyric_slide_counter = 0
-            title_slide_counter = 0
             slide_counter = 0
             section_counter = 0
             for line in lines:
                 # title slide
-                if title_slide_counter < 4:
-                    hymn_num = line.split(' ', 1)[0].strip()
+                if line_in_title_slide_counter < 4:
+                    hymn_num_name_list = line.split(' ', 1)
+                    if len(hymn_num_name_list) != 2:
+                        raise ValueError(f'The text at line {line_in_title_slide_counter + 1} \
+is not valid. Please check the instruction.')
+                    hymn_num = hymn_num_name_list[0].strip()
                     hymn_nums[line_in_title_slide_counter] = hymn_num
                     ppt.slides[0].shapes[line_in_title_slide_counter].text = hymn_num
-                    hymn_name = line.split(' ', 1)[1].strip()
+                    hymn_name = hymn_num_name_list[1].strip()
                     ppt.slides[0].shapes[line_in_title_slide_counter + 4].text = hymn_name
                     line_in_title_slide_counter += 1
-                    title_slide_counter += 1
                     continue
 
                 # lyrics slide
@@ -61,6 +63,9 @@ class LyricsPptCreator:
                         line_split_list = line.split(' ', 1)
                         if len(line_split_list) == 2:
                             ppt.slides[slide_counter].shapes[8].text = line_split_list[1].strip()
+                            line_in_lyric_slide_counter = 0
+                        elif line_split_list[0][len(line_split_list)].isnumeric():
+                            ppt.slides[slide_counter].shapes[8].text = line_split_list[0][len(line_split_list)].strip()
                             line_in_lyric_slide_counter = 0
 
                     section_counter += 1

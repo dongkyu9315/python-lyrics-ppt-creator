@@ -31,30 +31,39 @@ def create_app():
             _, file_ext = os.path.splitext(input_file_name)
             if file_ext != '.txt':
                 __delete_file_and_its_directory(input_file_path)
-                return redirect(url_for('input_error', file_ext=file_ext))
+                return redirect(url_for('input_file_type_error', file_ext=file_ext))
 
             input_file.save(input_file_path)
             return redirect(url_for('ppt_file', uuid_id=uuid_id, input_file_name=input_file_name))
 
     @app.route('/ppt_file/<uuid_id>/<input_file_name>', methods=['GET'])
     def ppt_file(uuid_id, input_file_name):
+        input_file_path = ''
+        output_file_path = ''
         if request.method == 'GET':
             lyrics_ppt_creator = LyricsPptCreator()
             input_file_path = __get_input_file_path(uuid_id, input_file_name)
-            output_file_path = lyrics_ppt_creator.create_lyrics_ppt(input_file_path)
+            try:
+                output_file_path = lyrics_ppt_creator.create_lyrics_ppt(input_file_path)
 
-            print(f'Sending the ouput file, {output_file_path}')
-            result = send_file(output_file_path, as_attachment=True)
-
-            __delete_file_and_its_directory(input_file_path)
-            __delete_file_and_its_directory(output_file_path)
+                print(f'Sending the ouput file, {output_file_path}')
+                result = send_file(output_file_path, as_attachment=True)
+            except ValueError as error:
+                return redirect(url_for('input_file_error', error_msg=str(error)))
+            finally:
+                __delete_file_and_its_directory(input_file_path)
+                __delete_file_and_its_directory(output_file_path)
 
             return result
 
-    @app.route('/input_error/<file_ext>')
-    def input_error(file_ext):
+    @app.route('/input_file_type_error/<file_ext>')
+    def input_file_type_error(file_ext):
         error_message = f'The file extension has to be .txt, but is {file_ext}'
-        return render_template('error.html', error_type='Invalid Input File Error', error_message=error_message)
+        return render_template('error.html', error_type='Invalid Input File Type Error', error_message=error_message)
+
+    @app.route('/input_file_error/<error_msg>')
+    def input_file_error(error_msg):
+        return render_template('error.html', error_type='Invalid Input File Error', error_message=error_msg)
 
     def __get_input_file_directory(uuid_id):
         working_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -64,8 +73,11 @@ def create_app():
         return os.path.join(__get_input_file_directory(uuid_id), input_file_name)
 
     def __delete_file_and_its_directory(file_path):
-        directory_path = os.path.dirname(file_path)
-        print(f'Deleting the file, {file_path}, and its directory')
-        shutil.rmtree(directory_path, ignore_errors=True)
+        try:
+            directory_path = os.path.dirname(file_path)
+            print(f'Deleting the file, {file_path}, and its directory')
+            shutil.rmtree(directory_path, ignore_errors=True)
+        except: # pylint: disable=bare-except
+            pass
 
     return app
