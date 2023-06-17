@@ -41,7 +41,7 @@ class LyricsPptCreator:
                 # title slide
                 if line_in_title_slide_counter < 4:
                     hymn_num_name_list = line.split(' ', 1)
-                    if len(hymn_num_name_list) != 2:
+                    if len(hymn_num_name_list) != 2: # in case when it is not "3 hymn name"
                         raise ValueError(f'The text at line {line_in_title_slide_counter + 1} \
 is not valid. Please check the instruction.')
                     hymn_num = hymn_num_name_list[0].strip()
@@ -54,19 +54,17 @@ is not valid. Please check the instruction.')
 
                 # lyrics slide
                 if self.__is_new_section(line):
-                    if section_counter % 2 == 0:
+                    if section_counter % 2 == 0: # this means we are on new slide
                         slide_counter += 1
                         ppt.slides.add_slide(lyrics_layout)
                         line_in_lyric_slide_counter = 0
                         section_counter = 0
 
                         line_split_list = line.split(' ', 1)
-                        if len(line_split_list) == 2:
+                        if len(line_split_list) == 2: # in case of "- 1"
                             ppt.slides[slide_counter].shapes[8].text = line_split_list[1].strip()
-                            line_in_lyric_slide_counter = 0
-                        elif line_split_list[0][len(line_split_list)].isnumeric():
+                        elif line_split_list[0][len(line_split_list)].isnumeric(): # in case of "-1"
                             ppt.slides[slide_counter].shapes[8].text = line_split_list[0][len(line_split_list)].strip()
-                            line_in_lyric_slide_counter = 0
 
                     section_counter += 1
                     continue
