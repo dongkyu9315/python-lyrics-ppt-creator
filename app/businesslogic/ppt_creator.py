@@ -72,7 +72,7 @@ is not valid. Please check the instruction.')
                 ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line.strip()
                 line_in_lyric_slide_counter += 1
 
-        output_file_name = f'E{hymn_nums[0]}_K{hymn_nums[1]}_S{hymn_nums[2]}_C{hymn_nums[3]}.pptx'
+        output_file_name = f'K{hymn_nums[2]}_E{hymn_nums[0]}_S{hymn_nums[1]}_C{hymn_nums[3]}.pptx'
         uuid_id = uuid.uuid4()
         os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
         output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
