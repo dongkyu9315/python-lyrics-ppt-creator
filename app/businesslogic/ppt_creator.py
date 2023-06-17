@@ -44,8 +44,13 @@ class LyricsPptCreator:
                     if len(hymn_num_name_list) != 2: # in case when it is not "3 hymn name"
                         raise ValueError(f'The text at line {line_in_title_slide_counter + 1} \
 is not valid. Please check the instruction.')
+
                     hymn_num = hymn_num_name_list[0].strip()
-                    hymn_nums[line_in_title_slide_counter] = hymn_num
+                    if hymn_num == '': # in case of " hymn_name"
+                        hymn_nums[line_in_title_slide_counter] = '#'
+                    else: # in case of "# hymn_name" or "123 hymn_name"
+                        hymn_nums[line_in_title_slide_counter] = hymn_num
+
                     ppt.slides[0].shapes[line_in_title_slide_counter].text = hymn_num
                     hymn_name = hymn_num_name_list[1].strip()
                     ppt.slides[0].shapes[line_in_title_slide_counter + 4].text = hymn_name
