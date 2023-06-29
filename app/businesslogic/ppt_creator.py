@@ -40,11 +40,12 @@ class LyricsPptCreator:
             for line in lines:
                 # title slide
                 if line_in_title_slide_counter < 4:
-                    hymn_num_name_list = line.split(' ', 1)
-                    if len(hymn_num_name_list) != 2: # in case when it is not "3 hymn name"
-                        raise ValueError(f'The text at line {line_in_title_slide_counter + 1} \
-is not valid. Please check the instruction.')
+                    if len(line.strip()) == 0: # in case language is missing
+                        hymn_nums[line_in_title_slide_counter] = '#'
+                        line_in_title_slide_counter += 1
+                        continue
 
+                    hymn_num_name_list = line.split(' ', 1)
                     hymn_num = hymn_num_name_list[0].strip()
                     if hymn_num == '': # in case of " hymn_name"
                         hymn_nums[line_in_title_slide_counter] = '#'
