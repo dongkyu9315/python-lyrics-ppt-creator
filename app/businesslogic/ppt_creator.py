@@ -9,6 +9,8 @@ class LyricsPptCreator:
 
     NEW_SECTION_TOKEN = '-'
     NUM_OF_LANGUAGES = 4
+    EMPTY_LANGUAGE_TOKEN = '*'
+    UNKNOWN_HYMN_NUM_TOKEN = '#'
 
     def __init__(self) -> None:
         pass
@@ -41,14 +43,14 @@ class LyricsPptCreator:
                 # title slide
                 if line_in_title_slide_counter < 4:
                     if len(line.strip()) == 0: # in case language is missing
-                        hymn_nums[line_in_title_slide_counter] = '#'
+                        hymn_nums[line_in_title_slide_counter] = self.EMPTY_LANGUAGE_TOKEN
                         line_in_title_slide_counter += 1
                         continue
 
                     hymn_num_name_list = line.split(' ', 1)
                     hymn_num = hymn_num_name_list[0].strip()
                     if hymn_num == '': # in case of " hymn_name"
-                        hymn_nums[line_in_title_slide_counter] = '#'
+                        hymn_nums[line_in_title_slide_counter] = self.UNKNOWN_HYMN_NUM_TOKEN
                     else: # in case of "# hymn_name" or "123 hymn_name"
                         hymn_nums[line_in_title_slide_counter] = hymn_num
 
@@ -78,7 +80,7 @@ class LyricsPptCreator:
                 ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line.strip()
                 line_in_lyric_slide_counter += 1
 
-        output_file_name = f'K{hymn_nums[2]}_E{hymn_nums[0]}_S{hymn_nums[1]}_C{hymn_nums[3]}.pptx'
+        output_file_name = self.__get_output_file_name(hymn_nums)
         uuid_id = uuid.uuid4()
         os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
         output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
@@ -122,3 +124,19 @@ should always be {self.NUM_OF_LANGUAGES}, but it is {line_in_section_counter} in
 
     def __is_new_section(self, line) -> bool:
         return line.startswith(self.NEW_SECTION_TOKEN)
+
+    def __get_output_file_name(self, hymn_nums) -> str:
+        output_file_name = ''
+        if hymn_nums[2] != '*':
+            output_file_name += f'K{hymn_nums[2]}'
+
+        if hymn_nums[0] != '*':
+            output_file_name += f'_E{hymn_nums[0]}'
+
+        if hymn_nums[1] != '*':
+            output_file_name += f'_S{hymn_nums[1]}'
+
+        if hymn_nums[3] != '*':
+            output_file_name += f'_C{hymn_nums[3]}'
+
+        return output_file_name + '.pptx'
