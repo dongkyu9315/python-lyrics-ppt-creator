@@ -30,7 +30,8 @@
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="#upload">Get Started</a></li>
+				<li><a href="#to_pptx">To PPT file</a></li>
+				<li><a href="#to_txt">To TXT file</a></li>
 				<li><a href="#demo">Try it out</a></li>
 				<li><a href="#how_to_use">How to Use</a></li>
 			</ul>
@@ -39,8 +40,8 @@
 		<!-- Main -->
 		<div id="main">
 
-			<!-- Get Started -->
-			<section id="upload" class="main">
+			<!-- To pptx -->
+			<section id="to_pptx" class="main">
 				<header class="major">
 					<h2>Create a Hymn Lyrics PPT file</h2>
 					<p>Upload your lyrics text file below</p>
@@ -53,7 +54,21 @@
 				</footer>
 			</section>
 
-			<!-- Get Started -->
+			<!-- To txt -->
+			<section id="to_txt" class="main">
+				<header class="major">
+					<h2>Create a TXT file</h2>
+					<p>Upload your ppt file below</p>
+				</header>
+				<footer class="major">
+					<form enctype="multipart/form-data" action="/pptx_file/" method="POST">
+						<p>File: <input type="file" name="filename" /></p>
+						<p><input type="submit" value="Upload / Convert / Download" /></p>
+					</form>
+				</footer>
+			</section>
+
+			<!-- Demo -->
 			<section id="demo" class="main">
 				<header class="major">
 					<h2>Try it out with a sample lyrics text file</h2>
@@ -65,7 +80,7 @@
 				</footer>
 			</section>
 
-			<!-- How to Use -->
+			<!-- How to use -->
 			<section id="how_to_use" class="main">
 				<header class="major">
 					<h2>How to use this website</h2>

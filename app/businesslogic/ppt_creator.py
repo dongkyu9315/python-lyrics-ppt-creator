@@ -15,7 +15,7 @@ class LyricsPptCreator:
     def __init__(self) -> None:
         pass
 
-    def create_lyrics_ppt(self, input_file_path) -> str:
+    def create_lyrics_ppt(self, input_txt_file_path) -> str:
         """Function creating lyrics ppt file"""
 
         ppt = Presentation(self.__get_template_file_path())
@@ -27,7 +27,7 @@ class LyricsPptCreator:
         if testing:
             lyrics_file_path = os.path.abspath('app/static/sample/lyrics/test_lyrics.txt')
         else:
-            lyrics_file_path = input_file_path
+            lyrics_file_path = input_txt_file_path
         self.__validate_lyrics_file(lyrics_file_path)
 
         hymn_nums = [0] * 5
