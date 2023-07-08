@@ -68,12 +68,13 @@ class LyricsPptCreator:
                         line_in_lyric_slide_counter = 0
                         section_counter = 0
 
-                        line_split_list = line.split(' ', 1)
-                        if len(line_split_list) == 2: # in case of "- 1"
-                            ppt.slides[slide_counter].shapes[8].text = line_split_list[1].strip()
-                        elif line_split_list[0][len(line_split_list)].isnumeric(): # in case of "-1"
-                            ppt.slides[slide_counter].shapes[8].text = line_split_list[0][len(line_split_list)].strip()
+                    line_split_list = line.split(' ', 1)
+                    if len(line_split_list) == 2: # in case of "- 1"
+                        ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line_split_list[1].strip()
+                    elif line_split_list[0][len(line_split_list)].isnumeric(): # in case of "-1"
+                        ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line_split_list[0][len(line_split_list)].strip()
 
+                    line_in_lyric_slide_counter += 1
                     section_counter += 1
                     continue
 
