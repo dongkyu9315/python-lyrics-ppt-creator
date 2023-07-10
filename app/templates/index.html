@@ -31,6 +31,7 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="#to_pptx">To PPT file</a></li>
+				<li><a href="#to_multiple_pptx">To multiple PPT files</a></li>
 				<li><a href="#to_txt">To TXT file</a></li>
 				<li><a href="#demo">Try it out</a></li>
 				<li><a href="#how_to_use">How to Use</a></li>
@@ -45,16 +46,22 @@
 				<header class="major">
 					<h2>Create a Hymn Lyrics PPT file</h2>
 					<p>Upload your lyrics text file below</p>
-
+				</header>
+				<footer class="major">
 					<form enctype="multipart/form-data" action="/text_file/" method="POST">
 						<p>File: <input type="file" name="filename"/></p>
 						<p><input type="submit" value="Upload / Convert / Download"/></p>
 					</form>
-				</header>
-				<footer class="major">
+				</footer>
+			</section>
+
+			<!-- To multiple pptx -->
+			<section id="to_multiple_pptx" class="main">
+				<header class="major">
 					<h2>Create a list of Hymn Lyrics PPT files</h2>
 					<p>Upload your lyrics text files below</p>
-
+				</header>
+				<footer class="major">
 					<form enctype="multipart/form-data" action="/text_files/" method="POST">
 						<p>File: <input type="file" name="filename[]" multiple/></p>
 						<p><input type="submit" value="Upload / Convert / Download"/></p>
