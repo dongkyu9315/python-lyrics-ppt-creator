@@ -45,11 +45,19 @@
 				<header class="major">
 					<h2>Create a Hymn Lyrics PPT file</h2>
 					<p>Upload your lyrics text file below</p>
+
+					<form enctype="multipart/form-data" action="/text_file/" method="POST">
+						<p>File: <input type="file" name="filename"/></p>
+						<p><input type="submit" value="Upload / Convert / Download"/></p>
+					</form>
 				</header>
 				<footer class="major">
-					<form enctype="multipart/form-data" action="/text_file/" method="POST">
-						<p>File: <input type="file" name="filename" /></p>
-						<p><input type="submit" value="Upload / Convert / Download" /></p>
+					<h2>Create a list of Hymn Lyrics PPT files</h2>
+					<p>Upload your lyrics text files below</p>
+
+					<form enctype="multipart/form-data" action="/text_files/" method="POST">
+						<p>File: <input type="file" name="filename[]" multiple/></p>
+						<p><input type="submit" value="Upload / Convert / Download"/></p>
 					</form>
 				</footer>
 			</section>
@@ -62,8 +70,8 @@
 				</header>
 				<footer class="major">
 					<form enctype="multipart/form-data" action="/pptx_file/" method="POST">
-						<p>File: <input type="file" name="filename" /></p>
-						<p><input type="submit" value="Upload / Convert / Download" /></p>
+						<p>File: <input type="file" name="filename"/></p>
+						<p><input type="submit" value="Upload / Convert / Download"/></p>
 					</form>
 				</footer>
 			</section>

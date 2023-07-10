@@ -1,6 +1,5 @@
 """Module creating lyrics ppt"""
 import os
-import uuid
 
 from pptx import Presentation
 
@@ -15,7 +14,7 @@ class LyricsPptCreator:
     def __init__(self) -> None:
         pass
 
-    def create_lyrics_ppt(self, input_txt_file_path) -> str:
+    def create_lyrics_ppt(self, input_txt_file_path, uuid_id) -> str:
         """Function creating lyrics ppt file"""
 
         ppt = Presentation(self.__get_template_file_path())
@@ -82,9 +81,11 @@ class LyricsPptCreator:
                 line_in_lyric_slide_counter += 1
 
         output_file_name = self.__get_output_file_name(hymn_nums)
-        uuid_id = uuid.uuid4()
-        os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
+        output_directory = self.__get_output_file_directory(uuid_id)
+        if not os.path.exists(output_directory):
+            os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
         output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
+
         ppt.save(output_file_path)
         print(f'Successfully created a ppt file in path, {output_file_path}')
 
