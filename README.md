@@ -22,19 +22,16 @@ Install dependencies
 python3 -m pip install -r requirements.txt
 ```
 
-OR
-
-```
-python3 -m pip install pylint
-python3 -m pip install Flask
-python3 -m pip install python-pptx
-python3 -m pip install Werkzeug
-```
-
-Below command runs the flask app
+Below commands run the flask app
 
 ```
 flask run
+```
+
+or
+
+```
+python3 run.py
 ```
 
 # Miscellaneous Commands
