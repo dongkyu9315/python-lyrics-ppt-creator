@@ -129,7 +129,7 @@ def create_app():
         input_file_path = __get_input_file_path(uuid_id, input_file_name)
         output_file_path = ''
         try:
-            output_file_path = lyrics_txt_creator.create_lyrics_txt(input_file_path)
+            output_file_path = lyrics_txt_creator.create_lyrics_txt(input_file_path, uuid_id)
 
             print(f'Sending the ouput file, {output_file_path}')
             result = send_file(output_file_path, as_attachment=True)
