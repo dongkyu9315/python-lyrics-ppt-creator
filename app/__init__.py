@@ -109,6 +109,20 @@ def create_app():
 
             return redirect(url_for('generate_text_file', uuid_id=uuid_id, input_file_name=input_file_name))
 
+    @app.route('/pptx_files/', methods=['POST'])
+    def submit_pptx_files():
+        if request.method == 'POST':
+            uuid_id = uuid.uuid4()
+            correct_file_ext = '.pptx'
+            uploaded_files = request.files.getlist("filename[]")
+
+            try:
+                __save_input_files(uploaded_files, uuid_id, correct_file_ext)
+            except ValueError as error:
+                return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
+
+            return redirect(url_for('generate_text_files', uuid_id=uuid_id))
+
     @app.route('/text_file/<uuid_id>/<input_file_name>')
     def generate_text_file(uuid_id, input_file_name):
         lyrics_txt_creator = LyricsTxtCreator()
@@ -126,6 +140,36 @@ def create_app():
             __delete_file_and_its_directory(output_file_path)
 
         return result
+
+    @app.route('/text_files/<uuid_id>')
+    def generate_text_files(uuid_id):
+        lyrics_txt_creator = LyricsTxtCreator()
+        input_file_directory = __get_input_file_directory(uuid_id)
+        output_file_directory = __get_output_file_directory(uuid_id)
+
+        for input_file_name in os.listdir(input_file_directory):
+            input_file_path = os.path.join(input_file_directory, input_file_name)
+            try:
+                print(f'Creating lyrics ppt file for: {input_file_path}')
+                lyrics_txt_creator.create_lyrics_txt(input_file_path, uuid_id)
+            except ValueError as error:
+                pass
+
+        print(f'Zipping the output files in directory: {output_file_directory}')
+        memory_file = io.BytesIO()
+        with zipfile.ZipFile(memory_file, 'w') as zip_file:
+            for output_file in os.listdir(output_file_directory):
+                print(f'Zipping the output file: {output_file}')
+                output_file_path = __get_output_file_path(uuid_id, output_file)
+                zip_file.write(output_file_path, os.path.basename(output_file_path))
+        memory_file.seek(0)
+
+        __delete_directory(input_file_directory)
+        __delete_directory(output_file_directory)
+
+        print('Returning the zip file')
+
+        return send_file(memory_file, download_name='hymn_txt.zip', as_attachment=True)
 
     @app.route('/input_file_type_error/<correct_file_ext>')
     def input_file_type_error(correct_file_ext):

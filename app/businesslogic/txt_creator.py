@@ -2,6 +2,7 @@
 import os
 import uuid
 
+from pathlib import Path
 from pptx import Presentation
 
 class LyricsTxtCreator:
@@ -10,14 +11,15 @@ class LyricsTxtCreator:
     def __init__(self) -> None:
         pass
 
-    def create_lyrics_txt(self, input_pptx_file_path) -> str:
+    def create_lyrics_txt(self, input_pptx_file_path, uuid_id) -> str:
         """Function creating lyrics txt file"""
 
         ppt = Presentation(input_pptx_file_path)
 
-        output_file_name = 'lyrics.txt'
-        uuid_id = uuid.uuid4()
-        os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
+        output_file_name = f'{Path(input_pptx_file_path).stem}.txt'
+        output_directory = self.__get_output_file_directory(uuid_id)
+        if not os.path.exists(output_directory):
+            os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
         output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
 
         with open(output_file_path, 'a') as txt_file:

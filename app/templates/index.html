@@ -33,6 +33,7 @@
 				<li><a href="#to_pptx">To PPT file</a></li>
 				<li><a href="#to_multiple_pptx">To multiple PPT files</a></li>
 				<li><a href="#to_txt">To TXT file</a></li>
+				<li><a href="#to_multiple_txt">To multiple TXT files</a></li>
 				<li><a href="#demo">Try it out</a></li>
 				<li><a href="#how_to_use">How to Use</a></li>
 			</ul>
@@ -76,11 +77,25 @@
 			<section id="to_txt" class="main">
 				<header class="major">
 					<h2>Create a TXT file</h2>
-					<p>Upload your ppt file below</p>
+					<p>Upload your pptx file below</p>
 				</header>
 				<footer class="major">
 					<form enctype="multipart/form-data" action="/pptx_file/" method="POST">
 						<p>File: <input type="file" name="filename"/></p>
+						<p><input type="submit" value="Upload / Convert / Download"/></p>
+					</form>
+				</footer>
+			</section>
+
+			<!-- To multiple txt -->
+			<section id="to_multiple_txt" class="main">
+				<header class="major">
+					<h2>Create a list of TXT files</h2>
+					<p>Upload your pptx files below</p>
+				</header>
+				<footer class="major">
+					<form enctype="multipart/form-data" action="/pptx_files/" method="POST">
+						<p>File: <input type="file" name="filename[]" multiple/></p>
 						<p><input type="submit" value="Upload / Convert / Download"/></p>
 					</form>
 				</footer>
