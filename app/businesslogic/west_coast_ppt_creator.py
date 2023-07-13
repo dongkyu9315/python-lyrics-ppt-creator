@@ -3,8 +3,8 @@ import os
 
 from pptx import Presentation
 
-class LyricsPptCreator:
-    """Class creating lyrics ppt file"""
+class WestCoastLyricsPptCreator:
+    """Class creating lyrics ppt file with west coast template"""
 
     NEW_SECTION_TOKEN = '-'
     NUM_OF_LANGUAGES = 4
@@ -93,7 +93,7 @@ class LyricsPptCreator:
 
     def __get_template_file_path(self):
         working_dir = self.__get_current_directory()
-        return os.path.join(working_dir, 'static/template/empty_template.pptx')
+        return os.path.join(working_dir, 'static/template/west_coast_template.pptx')
 
     def __get_output_file_directory(self, uuid_id):
         working_dir = self.__get_current_directory()

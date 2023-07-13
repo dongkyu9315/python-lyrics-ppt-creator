@@ -7,7 +7,8 @@ import zipfile
 
 from flask import Flask, redirect, render_template, request, send_file, url_for
 from werkzeug.utils import secure_filename
-from app.businesslogic.ppt_creator import LyricsPptCreator
+from app.businesslogic.wed_sermon_ppt_creator import WedSermonLyricsPptCreator
+from app.businesslogic.west_coast_ppt_creator import WestCoastLyricsPptCreator
 from app.businesslogic.txt_creator import LyricsTxtCreator
 
 def create_app():
@@ -27,12 +28,14 @@ def create_app():
         if request.method == 'POST':
             uuid_id = uuid.uuid4()
             correct_file_ext = '.txt'
+            use_case = request.form['use_case']
+
             try:
                 input_file_name = __save_input_file(request.files['filename'], uuid_id, correct_file_ext)
             except ValueError as error:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-            return redirect(url_for('generate_pptx_file', uuid_id=uuid_id, input_file_name=input_file_name))
+            return redirect(url_for('generate_pptx_file', uuid_id=uuid_id, use_case=use_case, input_file_name=input_file_name))
 
     @app.route('/text_files/', methods=['POST'])
     def submit_text_files():
@@ -40,22 +43,26 @@ def create_app():
             uuid_id = uuid.uuid4()
             correct_file_ext = '.txt'
             uploaded_files = request.files.getlist("filename[]")
+            use_case = request.form['use_case']
 
             try:
                 __save_input_files(uploaded_files, uuid_id, correct_file_ext)
             except ValueError as error:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-            return redirect(url_for('generate_pptx_files', uuid_id=uuid_id))
+            return redirect(url_for('generate_pptx_files', use_case=use_case, uuid_id=uuid_id))
 
-    @app.route('/pptx_file/<uuid_id>/<input_file_name>')
-    def generate_pptx_file(uuid_id, input_file_name):
-        lyrics_ppt_creator = LyricsPptCreator()
+    @app.route('/pptx_file/<uuid_id>/<use_case>/<input_file_name>')
+    def generate_pptx_file(uuid_id, use_case, input_file_name):
         input_file_path = __get_input_file_path(uuid_id, input_file_name)
         output_file_path = ''
         try:
-            print(f'Creating lyrics ppt file for: {input_file_path}')
-            output_file_path = lyrics_ppt_creator.create_lyrics_ppt(input_file_path, uuid_id)
+            print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
+            output_file_path = ""
+            if 'WedSermon' == use_case:
+                output_file_path = WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+            else: # defaults to west coast theme
+                output_file_path = WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
 
             print(f'Sending the ouput file, {output_file_path}')
             result = send_file(output_file_path, as_attachment=True)
@@ -67,17 +74,19 @@ def create_app():
 
         return result
 
-    @app.route('/pptx_files/<uuid_id>')
-    def generate_pptx_files(uuid_id):
-        lyrics_ppt_creator = LyricsPptCreator()
+    @app.route('/pptx_files/<uuid_id>/<use_case>')
+    def generate_pptx_files(uuid_id, use_case):
         input_file_directory = __get_input_file_directory(uuid_id)
         output_file_directory = __get_output_file_directory(uuid_id)
 
         for input_file_name in os.listdir(input_file_directory):
             input_file_path = os.path.join(input_file_directory, input_file_name)
             try:
-                print(f'Creating lyrics ppt file for: {input_file_path}')
-                lyrics_ppt_creator.create_lyrics_ppt(input_file_path, uuid_id)
+                print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
+                if 'WedSermon' == use_case:
+                    WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+                else:
+                    WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
             except ValueError as error:
                 pass
 
