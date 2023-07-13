@@ -74,6 +74,12 @@
 				<footer class="major">
 					<form enctype="multipart/form-data" action="/text_files/" method="POST">
 						<p>File: <input type="file" name="filename[]" multiple/></p>
+						<p>
+							<input type="radio" name="use_case" id="WestCoastThemeBatch" value="WestCoastTheme" checked>
+							<label for="WestCoastThemeBatch">West Coast Theme</label><br>
+							<input type="radio" name="use_case" id="WedSermonBatch" value="WedSermon">
+							<label for="WedSermonBatch">Wednesday Sermon</label><br>
+						</p>
 						<p><input type="submit" value="Upload / Convert / Download"/></p>
 					</form>
 				</footer>

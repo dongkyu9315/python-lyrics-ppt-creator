@@ -85,7 +85,7 @@ def create_app():
                 print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
                 if 'WedSermon' == use_case:
                     WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
-                else:
+                else: # defaults to west coast theme
                     WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
             except ValueError as error:
                 pass
