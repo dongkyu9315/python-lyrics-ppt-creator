@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/sidebars.css') }}" />
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 
 <body>
@@ -58,7 +59,7 @@
 		<div class="p-5 text-left bg-body-tertiary rounded-3">
 			<h1 class="text-body-emphasis">Generate a Hymn Lyrics PPT file</h1>
 			<p class="fs-5 text-muted">
-				Upload your txt file below to generate a ppt file
+				Upload your txt file below to generate a pptx file
 			</p>
 
 			<form enctype="multipart/form-data" action="/text_file/" method="POST">
