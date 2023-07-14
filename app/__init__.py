@@ -35,9 +35,13 @@ def create_app():
     def to_txt_batch():
         return render_template('to_txt_batch.html')
 
-    @app.route('/how_to_use/')
-    def how_to_use():
-        return render_template('how_to_use.html')
+    @app.route('/how_to_use_west_coast_theme/')
+    def how_to_use_west_coast_theme():
+        return render_template('how_to_use_west_coast_theme.html')
+
+    @app.route('/how_to_use_wed_sermon/')
+    def how_to_use_wed_sermon():
+        return render_template('how_to_use_wed_sermon.html')
 
     @app.route('/text_file/', methods=['POST'])
     def submit_text_file():
