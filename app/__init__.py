@@ -23,6 +23,22 @@ def create_app():
     def index():
         return render_template('index.html')
 
+    @app.route('/to_pptx_batch/')
+    def to_pptx_batch():
+        return render_template('to_pptx_batch.html')
+
+    @app.route('/to_txt/')
+    def to_txt():
+        return render_template('to_txt.html')
+
+    @app.route('/to_txt_batch/')
+    def to_txt_batch():
+        return render_template('to_txt_batch.html')
+
+    @app.route('/how_to_use/')
+    def how_to_use():
+        return render_template('how_to_use.html')
+
     @app.route('/text_file/', methods=['POST'])
     def submit_text_file():
         if request.method == 'POST':
@@ -32,10 +48,11 @@ def create_app():
 
             try:
                 input_file_name = __save_input_file(request.files['filename'], uuid_id, correct_file_ext)
-            except ValueError as error:
+            except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-            return redirect(url_for('generate_pptx_file', uuid_id=uuid_id, use_case=use_case, input_file_name=input_file_name))
+            return redirect(url_for('generate_pptx_file',
+                                    uuid_id=uuid_id, use_case=use_case, input_file_name=input_file_name))
 
     @app.route('/text_files/', methods=['POST'])
     def submit_text_files():
@@ -47,7 +64,7 @@ def create_app():
 
             try:
                 __save_input_files(uploaded_files, uuid_id, correct_file_ext)
-            except ValueError as error:
+            except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
             return redirect(url_for('generate_pptx_files', use_case=use_case, uuid_id=uuid_id))
@@ -87,7 +104,7 @@ def create_app():
                     WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
                 else: # defaults to west coast theme
                     WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
-            except ValueError as error:
+            except ValueError:
                 pass
 
         print(f'Zipping the output files in directory: {output_file_directory}')
@@ -113,7 +130,7 @@ def create_app():
             correct_file_ext = '.pptx'
             try:
                 input_file_name = __save_input_file(request.files['filename'], uuid_id, correct_file_ext)
-            except ValueError as error:
+            except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
             return redirect(url_for('generate_text_file', uuid_id=uuid_id, input_file_name=input_file_name))
@@ -127,7 +144,7 @@ def create_app():
 
             try:
                 __save_input_files(uploaded_files, uuid_id, correct_file_ext)
-            except ValueError as error:
+            except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
             return redirect(url_for('generate_text_files', uuid_id=uuid_id))
@@ -161,7 +178,7 @@ def create_app():
             try:
                 print(f'Creating lyrics ppt file for: {input_file_path}')
                 lyrics_txt_creator.create_lyrics_txt(input_file_path, uuid_id)
-            except ValueError as error:
+            except ValueError:
                 pass
 
         print(f'Zipping the output files in directory: {output_file_directory}')

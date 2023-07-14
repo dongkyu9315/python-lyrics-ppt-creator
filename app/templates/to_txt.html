@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Hymn Lyrics PPT Creator</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/sidebars.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}" />
+</head>
+
+<body>
+	<main class="d-flex flex-nowrap">
+		<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<svg class="bi pe-none me-2" width="40" height="32"></svg>
+				<span class="fs-4">Hymn Lyrics PPT Creator</span>
+			</a>
+			<hr>
+			<ul class="nav nav-pills flex-column mb-auto">
+				<li>
+					<a href="/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.txt -> .pptx
+					</a>
+				</li>
+				<li>
+					<a href="/to_pptx_batch/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.txt -> .pptx (batch)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="/to_txt/" class="nav-link active" aria-current="page">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.pptx -> .txt
+					</a>
+				</li>
+				<li>
+					<a href="/to_txt_batch/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.pptx -> .txt (batch)
+					</a>
+				</li>
+				<li>
+					<a href="/how_to_use/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						How to use
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container my-5">
+		<div class="p-5 text-left bg-body-tertiary rounded-3">
+			<h1 class="text-body-emphasis">Generate a TXT file</h1>
+			<p class="fs-5 text-muted">
+				Upload your pptx file below to generate a txt file
+			</p>
+
+			<form enctype="multipart/form-data" action="/pptx_file/" method="POST">
+				<p>File: <input type="file" name="filename"/></p>
+				<p><input type="submit" value="Upload / Convert / Download"/></p>
+			</form>
+
+			<br/>
+			<hr/>
+			<br/>
+
+			<footer>
+				<section>
+					<h4>Feature Requests / Bug Reports / Any Questions</h4>
+					<p>Send an email to <a href="mailto:dongkyu.kim.dev@gmail.com">dongkyu.kim.dev@gmail.com</a></p>
+					<p>Find the source code of this website at <a href="https://github.com/dongkyu9315/python-lyrics-ppt-creator">Github</a></p>
+				</section>
+				<p>&copy;2023 Dongkyu Kim</p>
+			</footer>
+		</div>
+	</div>
+
+	<script src="{{ url_for('static',filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/sidebars.js') }}"></script>
+</body>
+
+</html>

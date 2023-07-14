@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Hymn Lyrics PPT Creator</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/sidebars.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}" />
+</head>
+
+<body>
+	<main class="d-flex flex-nowrap">
+		<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<svg class="bi pe-none me-2" width="40" height="32"></svg>
+				<span class="fs-4">Hymn Lyrics PPT Creator</span>
+			</a>
+			<hr>
+			<ul class="nav nav-pills flex-column mb-auto">
+				<li>
+					<a href="/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.txt -> .pptx
+					</a>
+				</li>
+				<li>
+					<a href="/to_pptx_batch/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.txt -> .pptx (batch)
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="/to_txt/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.pptx -> .txt
+					</a>
+				</li>
+				<li>
+					<a href="/to_txt_batch/" class="nav-link text-white">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						.pptx -> .txt (batch)
+					</a>
+				</li>
+				<li>
+					<a href="/how_to_use/" class="nav-link active" aria-current="page">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						How to use
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container my-5">
+		<div class="p-5 text-left bg-body-tertiary rounded-3">
+			<h1 class="text-body-emphasis">How to use this website</h1>
+			<p class="fs-5 text-muted">
+				Follow below instructions to learn how to use this website
+			</p>
+
+			<h3><b>1. Create a lyrics text file</b></h3>
+			<p>
+				- Create an empty text file with extension <b>.txt</b><br />
+				- or you can download a sample file from
+				<a href="{{ url_for('static',filename='sample/lyrics.txt') }}" download="sample_lyrics.txt">here</a>
+			</p>
+			<h3><b>2. Fill out the title section</b></h3>
+			<p>
+				- The first 4 lines are the titles of the hymn in the order of English, Spanish, Korean, and
+				Chinese<br />
+				- For each line, hymn number comes first, the title comes after, and a whitespace separates
+				them<br />
+				- If the hymn does not have a number, the line should start with a whitespace or a symbol
+				(recommended to use '<b>#</b>')<br />
+				- e.g. (for below input, '#' will be written for Chinese hymn number)<br />
+			</p>
+			<p style="background-color:#091238; color:#FFFFFF">
+				340 'Tis so Sweet to Trust in Jesus<br />
+				206 ¡Oh Cuan Dulce Es Fiar en Cristo!<br />
+				340 구주 예수 의지함이<br />
+				# 依靠救主耶稣<br />
+			</p>
+			<p>
+				- If a language is missing, you MUST leave the line as empty<br />
+				- e.g. (for below input, spanish and chinese are missing)<br />
+			</p>
+			<p style="background-color:#091238; color:#FFFFFF">
+				340 'Tis so Sweet to Trust in Jesus<br />
+				<br />
+				340 구주 예수 의지함이<br />
+				<br />
+			</p>
+			<h3><b>3. Iteratively fill out the lyrics section</b></h3>
+			<p>
+				- A slide in the PPT consists of 2 sections<br />
+				- Each section starts with a '<b>-</b>' symbol<br />
+				- A first section of of a slide may or may not have a verse number after '<b>-</b>' symbol
+				with a whitespace in between<br />
+			</p>
+			<p style="background-color:#091238; color:#FFFFFF">
+				- 1<br />
+				'Tis so sweet to trust in Je-sus,<br />
+				Oh, cuan dul-ce es fiar en Cris-to<br />
+				구주 예수 의지함이<br />
+				救主耶稣我依靠<br />
+				-<br />
+				Just to take Him at His Word;<br />
+				Y en-tre-gar-se to-do a el<br />
+				심히 기쁜 일일세<br />
+				我很开心。<br />
+			</p>
+			<p>
+				- If a language is missing, you MUST leave the line as empty<br />
+				- e.g. (for below input, spanish and chinese are missing)<br />
+			</p>
+			<p style="background-color:#091238; color:#FFFFFF">
+				- 1<br />
+				'Tis so sweet to trust in Je-sus,<br />
+				<br />
+				구주 예수 의지함이<br />
+				<br />
+				-<br />
+				Just to take Him at His Word;<br />
+				<br />
+				심히 기쁜 일일세<br />
+				<br />
+			</p>
+			<h3><b>4. Finally, save the file</b></h3>
+			<p>
+				- Example of a complete lyrics text file is below<br />
+			</p>
+			<p style="background-color:#091238; color:#FFFFFF">
+				340 'Tis so Sweet to Trust in Jesus<br />
+				206 ¡Oh Cuan Dulce Es Fiar en Cristo!<br />
+				340 구주 예수 의지함이<br />
+				# 依靠救主耶稣<br />
+				- 1<br />
+				'Tis so sweet to trust in Je-sus,<br />
+				Oh, cuan dul-ce es fiar en Cris-to<br />
+				구주 예수 의지함이<br />
+				救主耶稣我依靠<br />
+				-<br />
+				Just to take Him at His Word;<br />
+				Y en-tre-gar-se to-do a el<br />
+				심히 기쁜 일일세<br />
+				我很开心。<br />
+				-<br />
+				Just to rest up-on His prom-ise;<br />
+				Es-pe-rar en sus pro-me-sas<br />
+				허락하심 받았으니<br />
+				给予许可<br />
+				-<br />
+				Just to know, "Thus saith the Lord"<br />
+				Y en sus sen-das ser-le fiel!<br />
+				의심 아주 없도다<br />
+				毫无疑问<br />
+				- 2<br />
+				'Tis so sweet to trust in Je-sus,<br />
+				Oh, cuan dul-ce es fiar en Cris-to<br />
+				구주 예수 의지함이<br />
+				救主耶稣我依靠<br />
+				-<br />
+				Just to take Him at His Word;<br />
+				Y en-tre-gar-se to-do a el<br />
+				심히 기쁜 일일세<br />
+				我很开心。<br />
+				-<br />
+				Just to rest up-on His prom-ise;<br />
+				Es-pe-rar en sus pro-me-sas<br />
+				허락하심 받았으니<br />
+				给予许可<br />
+				-<br />
+				Just to know, "Thus saith the Lord"<br />
+				Y en sus sen-das ser-le fiel!<br />
+				의심 아주 없도다<br />
+				毫无疑问<br />
+			</p>
+			<h3><b>5. Go to the <a href="/">.txt -> .pptx</a> page</b></h3>
+			<h3><b>6. Click 'browse' to find the saved text file</h3>
+			<h3><b>7. Click 'Upload / Convert / Download' button and you will see a pop-up to download a ppt file</b></h3>
+
+			<br/>
+			<hr/>
+			<br/>
+
+			<footer>
+				<section>
+					<h4>Feature Requests / Bug Reports / Any Questions</h4>
+					<p>Send an email to <a href="mailto:dongkyu.kim.dev@gmail.com">dongkyu.kim.dev@gmail.com</a></p>
+					<p>Find the source code of this website at <a href="https://github.com/dongkyu9315/python-lyrics-ppt-creator">Github</a></p>
+				</section>
+				<p>&copy;2023 Dongkyu Kim</p>
+			</footer>
+		</div>
+	</div>
+
+	<script src="{{ url_for('static',filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='assets/js/sidebars.js') }}"></script>
+</body>
+
+</html>
