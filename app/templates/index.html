@@ -65,9 +65,15 @@
 				<p>File: <input type="file" name="filename"/></p>
 				<p>
 					<input type="radio" name="use_case" id="WestCoastTheme" value="WestCoastTheme" checked>
-					<label for="WestCoastTheme">West Coast Theme</label><br>
+					<label for="WestCoastTheme">West Coast Theme<br>
+						<img src="{{ url_for('static',filename='sample/west_coast_title_example.png') }}" alt="west_coast_title_example.png" style="width:200px">
+						<img src="{{ url_for('static',filename='sample/west_coast_lyrics_example.png') }}" alt="west_coast_lyrics_example.png" style="width:200px">
+					</label>
+					<br/>
 					<input type="radio" name="use_case" id="WedSermon" value="WedSermon">
-					<label for="WedSermon">Wednesday Sermon</label><br>
+					<label for="WedSermon">Wednesday Sermon<br>
+						<img src="{{ url_for('static',filename='sample/wed_sermon_example.png') }}" alt="wed_sermon_example.png" style="width:200px">
+					</label>
 				</p>
 				<p><input type="submit" value="Upload / Convert / Download"/></p>
 			</form>
