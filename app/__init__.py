@@ -19,13 +19,13 @@ def create_app():
 
     # Register blueprints here
 
-    @app.route('/download_hymn_ppt/')
-    def download_hymn_ppt():
-        return render_template('download_hymn_ppt.html')
-
     @app.route('/')
     def index():
         return render_template('index.html')
+
+    @app.route('/to_pptx/')
+    def to_pptx():
+        return render_template('to_pptx.html')
 
     @app.route('/to_pptx_batch/')
     def to_pptx_batch():
