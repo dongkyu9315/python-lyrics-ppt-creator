@@ -19,6 +19,10 @@ def create_app():
 
     # Register blueprints here
 
+    @app.route('/download_hymn_ppt/')
+    def download_hymn_ppt():
+        return render_template('download_hymn_ppt.html')
+
     @app.route('/')
     def index():
         return render_template('index.html')
@@ -42,6 +46,40 @@ def create_app():
     @app.route('/how_to_use_wed_sermon/')
     def how_to_use_wed_sermon():
         return render_template('how_to_use_wed_sermon.html')
+
+    @app.route('/hymn_ppt/', methods=['POST'])
+    def generate_hymn_ppt():
+        working_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+        input_file_directory = os.path.join(working_dir, 'app/static/lyrics')
+        uuid_id = uuid.uuid4()
+        output_file_directory = __get_output_file_directory(uuid_id)
+        use_case = request.form.get('use_case')
+
+        for input_file_name in request.form.getlist('hymn_file_title'):
+            input_file_path = os.path.join(input_file_directory, input_file_name)
+            try:
+                print(f'Creating lyrics ppt file for hymn: {input_file_name} and input: {input_file_path}')
+                if 'WedSermon' == use_case: # todo: delete this use case
+                    WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+                else: # defaults to west coast theme
+                    WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+            except ValueError:
+                pass
+
+        print(f'Zipping the output files in directory: {output_file_directory}')
+        memory_file = io.BytesIO()
+        with zipfile.ZipFile(memory_file, 'w') as zip_file:
+            for output_file in os.listdir(output_file_directory):
+                print(f'Zipping the output file: {output_file}')
+                output_file_path = __get_output_file_path(uuid_id, output_file)
+                zip_file.write(output_file_path, os.path.basename(output_file_path))
+        memory_file.seek(0)
+
+        __delete_directory(output_file_directory)
+
+        print('Returning the zip file')
+
+        return send_file(memory_file, download_name='hymn_pptx.zip', as_attachment=True)
 
     @app.route('/text_file/', methods=['POST'])
     def submit_text_file():

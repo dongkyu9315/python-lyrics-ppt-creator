@@ -22,13 +22,13 @@
 			<hr>
 			<ul class="nav nav-pills flex-column mb-auto">
 				<li class="nav-item">
-					<li class="nav-item">
-						<a href="/download_hymn_ppt/" class="nav-link text-white">
-							<svg class="bi pe-none me-2" width="16" height="16"></svg>
-							Download Hymn PPT
-						</a>
-					</li>
-					<a href="/" class="nav-link active" aria-current="page">
+					<a href="/download_hymn_ppt/" class="nav-link active" aria-current="page">
+						<svg class="bi pe-none me-2" width="16" height="16"></svg>
+						Download Hymn PPT
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="/" class="nav-link text-white">
 						<svg class="bi pe-none me-2" width="16" height="16"></svg>
 						.txt -> .pptx
 					</a>
@@ -82,23 +82,54 @@
 
 	<div class="container my-5">
 		<div class="p-5 text-left bg-body-tertiary rounded-3">
-			<h1 class="text-body-emphasis">Generate a Hymn Lyrics PPT file</h1>
+			<h1 class="text-body-emphasis">Download Hymn Lyrics PPT</h1>
 			<p class="fs-5 text-muted">
-				Upload your txt file below to generate a pptx file
+				Select your interested hymn and download the ppt file
 			</p>
 
-			<form enctype="multipart/form-data" action="/text_file/" method="POST">
-				<p>File: <input type="file" name="filename"/></p>
+			<select name="hymn_file_title" size="20" style="width: 300px" form="generate_ppt" multiple>
+				<option value="K40_E40_S#_C#.txt">K40_E40_S#_C#</option>
+				<option value="K73_E73.txt">K73_E73</option>
+				<option value="K78_E78_S49_C27.txt">K78_E78_S49_C27</option>
+				<option value="K163_E163_S97_C119.txt">K163_E163_S97_C119</option>
+				<option value="K167_E167_S#_C#.txt">K167_E167_S#_C#</option>
+				<option value="K172_E172_S103.txt">K172_E172_S103</option>
+				<option value="K173_E173.txt">K173_E173</option>
+				<option value="K185_E185.txt">K185_E185</option>
+				<option value="K186_E186_S132_C210.txt">K186_E186_S132_C210</option>
+				<option value="K193_E193_S61_C213.txt">K193_E193_S61_C213</option>
+				<option value="K194_E194_S61.txt">K194_E194_S61</option>
+				<option value="K202_E202_S128_C#.txt">K202_E202_S128_C#</option>
+				<option value="K204_E204_S135_C280.txt">K204_E204_S135_C280</option>
+				<option value="K211_E211_C#.txt">K211_E211_C#</option>
+				<option value="K235_E235_S81_C197.txt">K235_E235_S81_C197</option>
+				<option value="K253_E253_S95_C#.txt">K253_E253_S95_C#</option>
+				<option value="K265_E265_S88_C#.txt">K265_E265_S88_C#</option>
+				<option value="K316_E316_S118_C#.txt">K316_E316_S118_C#</option>
+				<option value="K317_E317_S#_C#.txt">K317_E317_S#_C#</option>
+				<option value="K318_E318_S189_C219.txt">K318_E318_S189_C219</option>
+				<option value="K321_E321_S107_C#.txt">K321_E321_S107_C#</option>
+				<option value="K331_E331_S198_C#.txt">K331_E331_S198_C#</option>
+				<option value="K336_E336_C#.txt">K336_E336_C#</option>
+				<option value="K340_E340_S111.txt">K340_E340_S111</option>
+				<option value="K343_E343_S#_C#.txt">K343_E343_S#_C#</option>
+				<option value="K349_E349_S213_C#.txt">K349_E349_S213_C#</option>
+				<option value="K405_E405.txt">K405_E405</option>
+				<option value="K413_E413.txt">K413_E413</option>
+				<option value="K440_E440_S197_C214.txt">K440_E440_S197_C214</option>
+				<option value="K455_E455.txt">K455_E455</option>
+				<option value="K474_E474_C#.txt">K474_E474_C#</option>
+				<option value="K487_E487_S297.txt">K487_E487_S297</option>
+				<option value="K493_E493.txt">K493_E493</option>
+				<option value="K545_E545.txt">K545_E545</option>
+			</select>
+
+			<form enctype="multipart/form-data" action="/hymn_ppt/" method="POST" id="generate_ppt">
 				<p>
 					<input type="radio" name="use_case" id="WestCoastTheme" value="WestCoastTheme" checked>
 					<label for="WestCoastTheme">West Coast Theme<br>
 						<img src="{{ url_for('static',filename='sample/west_coast_title_example.png') }}" alt="west_coast_title_example.png" style="width:200px">
 						<img src="{{ url_for('static',filename='sample/west_coast_lyrics_example.png') }}" alt="west_coast_lyrics_example.png" style="width:200px">
-					</label>
-					<br/>
-					<input type="radio" name="use_case" id="WedSermon" value="WedSermon">
-					<label for="WedSermon">Wednesday Sermon<br>
-						<img src="{{ url_for('static',filename='sample/wed_sermon_example.png') }}" alt="wed_sermon_example.png" style="width:200px">
 					</label>
 				</p>
 				<p><input type="submit" value="Upload / Convert / Download"/></p>
