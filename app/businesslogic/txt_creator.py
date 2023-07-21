@@ -25,7 +25,8 @@ class LyricsTxtCreator:
         with open(output_file_path, 'a') as txt_file:
             for slide in ppt.slides:
                 for shape in slide.shapes:
-                    txt_file.write(f'{shape.text}\n')
+                    splitted_lines = '\n'.join(shape.text.splitlines())
+                    txt_file.write(f'{splitted_lines}\n')
 
         return output_file_path
 
