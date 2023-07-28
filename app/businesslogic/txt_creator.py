@@ -1,6 +1,5 @@
 """Module creating lyrics txt file from a pptx file"""
 import os
-import uuid
 
 from pathlib import Path
 from pptx import Presentation
@@ -22,7 +21,7 @@ class LyricsTxtCreator:
             os.mkdir(self.__get_output_file_directory(uuid_id), 0o777)
         output_file_path = self.__get_output_file_path(uuid_id, output_file_name)
 
-        with open(output_file_path, 'a') as txt_file:
+        with open(output_file_path, 'a', encoding='UTF-8') as txt_file:
             for slide in ppt.slides:
                 for shape in slide.shapes:
                     splitted_lines = '\n'.join(shape.text.splitlines())

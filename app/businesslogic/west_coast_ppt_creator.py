@@ -55,7 +55,13 @@ class WestCoastLyricsPptCreator:
 
                     ppt.slides[0].shapes[line_in_title_slide_counter].text = hymn_num
                     hymn_name = hymn_num_name_list[1].strip()
-                    ppt.slides[0].shapes[line_in_title_slide_counter + 4].text = hymn_name
+
+                    text_shape = ppt.slides[0].shapes[line_in_title_slide_counter + 4]
+                    text_shape.text = hymn_name
+                    text_frame = text_shape.text_frame
+                    text_frame.fit_text(font_family='Arial', max_size=40, bold=True, italic=False, font_file=None)
+                    text_frame.auto_size = None
+
                     line_in_title_slide_counter += 1
                     continue
 
@@ -77,7 +83,11 @@ class WestCoastLyricsPptCreator:
                     section_counter += 1
                     continue
 
-                ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter].text = line.strip()
+                text_shape = ppt.slides[slide_counter].shapes[line_in_lyric_slide_counter]
+                text_shape.text = line.strip()
+                text_frame = text_shape.text_frame
+                text_frame.fit_text(font_family='Arial', max_size=32, bold=True, italic=False, font_file=None)
+                text_frame.auto_size = None
                 line_in_lyric_slide_counter += 1
 
         output_file_name = self.__get_output_file_name(hymn_nums)
