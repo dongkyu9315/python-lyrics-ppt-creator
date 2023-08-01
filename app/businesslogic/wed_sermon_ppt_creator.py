@@ -29,7 +29,7 @@ class WedSermonLyricsPptCreator:
                 text_shape = ppt.slides[slide_counter].shapes[0]
                 text_shape.text = line.strip()
                 text_frame = text_shape.text_frame
-                text_frame.fit_text(font_family='Arial', max_size=30, bold=True, italic=False, font_file=None)
+                text_frame.fit_text(font_family='Arial', max_size=30, bold=False, italic=False, font_file=None)
                 text_frame.auto_size = None
                 slide_counter += 1
                 ppt.slides.add_slide(main_layout)
