@@ -92,6 +92,7 @@ class WestCoastLyricsPptCreator:
                 font_path = os.path.join(os.path.realpath(working_dir + '/../'), 'app/static/fonts/arial.ttf')
                 text_frame.fit_text(font_family=None, max_size=32, bold=None, italic=None, font_file=font_path)
                 text_frame.auto_size = None
+
                 line_in_lyric_slide_counter += 1
 
         output_file_name = self.__get_output_file_name(hymn_nums)
