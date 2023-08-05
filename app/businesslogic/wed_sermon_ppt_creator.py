@@ -31,7 +31,7 @@ class WedSermonLyricsPptCreator:
                 text_frame = text_shape.text_frame
                 working_dir = self.__get_current_directory()
                 font_path = os.path.join(os.path.realpath(working_dir + '/../'), 'app/static/fonts/arial_bold.ttf')
-                text_frame.fit_text(font_family=None, max_size=24, bold=None, italic=None, font_file=font_path)
+                text_frame.fit_text(font_family=None, max_size=30, bold=None, italic=None, font_file=font_path)
                 text_frame.auto_size = None
 
                 slide_counter += 1
