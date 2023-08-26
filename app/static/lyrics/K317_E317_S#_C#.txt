@@ -1,5 +1,5 @@
 317 O, Come Home
-# ¡O, vuelve
+# ¡O, Vuelve
 317 어서 돌아오오
 # 回家
 - 1
@@ -24,7 +24,7 @@ Tan pesa-dos y graves
 无论多深多罪恶
 -
 Prove more than Je-sus can car-ry
-¿Serán más de que pueda cargar 
+¿Serán más de que pueda cargar
 주 어찌 못 담당하고
 只有基督耶稣能背负
 -
