@@ -31,10 +31,6 @@ def create_app():
     def to_txt():
         return render_template('to_txt.html')
 
-    @app.route('/to_txt_batch/')
-    def to_txt_batch():
-        return render_template('to_txt_batch.html')
-
     @app.route('/how_to_use_west_coast_theme/')
     def how_to_use_west_coast_theme():
         return render_template('how_to_use_west_coast_theme.html')
@@ -64,12 +60,7 @@ def create_app():
                 pass
 
         if len(request.form.getlist('hymn_file_title')) == 1:
-            output_file_path = ''
-            for output_file in os.listdir(output_file_directory):
-                print(f'Found the output file: {output_file}')
-                output_file_path = __get_output_file_path(uuid_id, output_file)
-                break
-
+            output_file_path = __get_output_file_path(uuid_id, os.listdir(output_file_directory)[0])
             try:
                 print(f'Returning the output file at path: {output_file_path}')
                 return send_file(output_file_path, as_attachment=True)
@@ -99,53 +90,21 @@ def create_app():
 
         uuid_id = uuid.uuid4()
         correct_file_ext = '.txt'
-        use_case = request.form['use_case']
-        uploaded_files = request.files.getlist("filename[]")
-
-        if len(uploaded_files) == 1:
-            try:
-                input_file_name = __save_input_file(uploaded_files[0], uuid_id, correct_file_ext)
-            except ValueError:
-                return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
-
-            return redirect(url_for('generate_pptx_file',
-                                    uuid_id=uuid_id, use_case=use_case, input_file_name=input_file_name))
 
         try:
-            __save_input_files(uploaded_files, uuid_id, correct_file_ext)
+            __save_input_files(request.files.getlist("filename[]"), uuid_id, correct_file_ext)
         except ValueError:
             return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-        return redirect(url_for('generate_pptx_files', use_case=use_case, uuid_id=uuid_id))
-
-    @app.route('/pptx_file/<uuid_id>/<use_case>/<input_file_name>')
-    def generate_pptx_file(uuid_id, use_case, input_file_name):
-        input_file_path = __get_input_file_path(uuid_id, input_file_name)
-        output_file_path = ''
-        try:
-            print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
-            output_file_path = ""
-            if 'WedSermon' == use_case:
-                output_file_path = WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
-            else: # defaults to west coast theme
-                output_file_path = WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
-
-            print(f'Sending the ouput file, {output_file_path}')
-            result = send_file(output_file_path, as_attachment=True)
-        except ValueError as error:
-            return redirect(url_for('input_file_error', error_msg=str(error)))
-        finally:
-            __delete_file_and_its_directory(input_file_path)
-            __delete_file_and_its_directory(output_file_path)
-
-        return result
+        return redirect(url_for('generate_pptx_files', use_case=request.form['use_case'], uuid_id=uuid_id))
 
     @app.route('/pptx_files/<uuid_id>/<use_case>')
     def generate_pptx_files(uuid_id, use_case):
         input_file_directory = __get_input_file_directory(uuid_id)
-        output_file_directory = __get_output_file_directory(uuid_id)
 
+        num_of_input_file = 0
         for input_file_name in os.listdir(input_file_directory):
+            num_of_input_file += 1
             input_file_path = os.path.join(input_file_directory, input_file_name)
             try:
                 print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
@@ -156,6 +115,28 @@ def create_app():
             except ValueError:
                 pass
 
+        if num_of_input_file == 1:
+            input_file_path = __get_input_file_path(uuid_id, os.listdir(input_file_directory)[0])
+            output_file_path = ''
+            try:
+                print(f'Creating lyrics ppt file for use case: {use_case} and input: {input_file_path}')
+                output_file_path = ""
+                if 'WedSermon' == use_case:
+                    output_file_path = WedSermonLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+                else: # defaults to west coast theme
+                    output_file_path = WestCoastLyricsPptCreator().create_lyrics_ppt(input_file_path, uuid_id)
+
+                print(f'Sending the ouput file, {output_file_path}')
+                result = send_file(output_file_path, as_attachment=True)
+            except ValueError as error:
+                return redirect(url_for('input_file_error', error_msg=str(error)))
+            finally:
+                __delete_file_and_its_directory(input_file_path)
+                __delete_file_and_its_directory(output_file_path)
+
+            return result
+
+        output_file_directory = __get_output_file_directory(uuid_id)
         print(f'Zipping the output files in directory: {output_file_directory}')
         memory_file = io.BytesIO()
         with zipfile.ZipFile(memory_file, 'w') as zip_file:
@@ -180,48 +161,22 @@ def create_app():
 
         uuid_id = uuid.uuid4()
         correct_file_ext = '.pptx'
-        uploaded_files = request.files.getlist("filename[]")
-
-        if len(uploaded_files) == 1:
-            try:
-                input_file_name = __save_input_file(uploaded_files[0], uuid_id, correct_file_ext)
-            except ValueError:
-                return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
-
-            return redirect(url_for('generate_text_file', uuid_id=uuid_id, input_file_name=input_file_name))
 
         try:
-            __save_input_files(uploaded_files, uuid_id, correct_file_ext)
+            __save_input_files(request.files.getlist("filename[]"), uuid_id, correct_file_ext)
         except ValueError:
             return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
         return redirect(url_for('generate_text_files', uuid_id=uuid_id))
 
-    @app.route('/text_file/<uuid_id>/<input_file_name>')
-    def generate_text_file(uuid_id, input_file_name):
-        lyrics_txt_creator = LyricsTxtCreator()
-        input_file_path = __get_input_file_path(uuid_id, input_file_name)
-        output_file_path = ''
-        try:
-            output_file_path = lyrics_txt_creator.create_lyrics_txt(input_file_path, uuid_id)
-
-            print(f'Sending the ouput file, {output_file_path}')
-            result = send_file(output_file_path, as_attachment=True)
-        except ValueError as error:
-            return redirect(url_for('input_file_error', error_msg=str(error)))
-        finally:
-            __delete_file_and_its_directory(input_file_path)
-            __delete_file_and_its_directory(output_file_path)
-
-        return result
-
     @app.route('/text_files/<uuid_id>')
     def generate_text_files(uuid_id):
         lyrics_txt_creator = LyricsTxtCreator()
         input_file_directory = __get_input_file_directory(uuid_id)
-        output_file_directory = __get_output_file_directory(uuid_id)
 
+        num_of_input_file = 0
         for input_file_name in os.listdir(input_file_directory):
+            num_of_input_file += 1
             input_file_path = os.path.join(input_file_directory, input_file_name)
             try:
                 print(f'Creating lyrics ppt file for: {input_file_path}')
@@ -229,6 +184,23 @@ def create_app():
             except ValueError:
                 pass
 
+        if num_of_input_file == 1:
+            input_file_path = __get_input_file_path(uuid_id, os.listdir(input_file_directory)[0])
+            output_file_path = ''
+            try:
+                output_file_path = lyrics_txt_creator.create_lyrics_txt(input_file_path, uuid_id)
+
+                print(f'Sending the ouput file, {output_file_path}')
+                result = send_file(output_file_path, as_attachment=True)
+            except ValueError as error:
+                return redirect(url_for('input_file_error', error_msg=str(error)))
+            finally:
+                __delete_file_and_its_directory(input_file_path)
+                __delete_file_and_its_directory(output_file_path)
+
+            return result
+
+        output_file_directory = __get_output_file_directory(uuid_id)
         print(f'Zipping the output files in directory: {output_file_directory}')
         memory_file = io.BytesIO()
         with zipfile.ZipFile(memory_file, 'w') as zip_file:
@@ -253,19 +225,6 @@ def create_app():
     @app.route('/input_file_error/<error_msg>')
     def input_file_error(error_msg):
         return render_template('error.html', error_type='Invalid Input File Error', error_message=error_msg)
-
-    def __save_input_file(input_file, uuid_id, correct_file_ext):
-        os.mkdir(__get_input_file_directory(uuid_id), 0o777)
-        input_file_name = secure_filename(input_file.filename)
-        input_file_path = __get_input_file_path(uuid_id, input_file_name)
-
-        _, file_ext = os.path.splitext(input_file_name)
-        if file_ext != correct_file_ext:
-            __delete_file_and_its_directory(input_file_path)
-            raise ValueError()
-
-        input_file.save(input_file_path)
-        return input_file_name
 
     def __save_input_files(input_files, uuid_id, correct_file_ext):
         input_file_directory = __get_input_file_directory(uuid_id)
