@@ -66,6 +66,19 @@ def create_app():
             except ValueError:
                 pass
 
+        if len(request.form.getlist('hymn_file_title')) == 1:
+            output_file_path = ''
+            for output_file in os.listdir(output_file_directory):
+                print(f'Found the output file: {output_file}')
+                output_file_path = __get_output_file_path(uuid_id, output_file)
+                break
+
+            try:
+                print(f'Returning the output file at path: {output_file_path}')
+                return send_file(output_file_path, as_attachment=True)
+            finally:
+                __delete_directory(output_file_directory)
+
         print(f'Zipping the output files in directory: {output_file_directory}')
         memory_file = io.BytesIO()
         with zipfile.ZipFile(memory_file, 'w') as zip_file:
