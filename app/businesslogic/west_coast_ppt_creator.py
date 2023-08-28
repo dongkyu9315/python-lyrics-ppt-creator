@@ -126,8 +126,10 @@ class WestCoastLyricsPptCreator:
         with open(lyrics_file_path, 'r', encoding='UTF-8') as lyrics_file:
             lines = lyrics_file.readlines()
             line_in_section_counter = 0
+            is_new_section_separator_present = False
             for line in lines:
                 if self.__is_new_section(line):
+                    is_new_section_separator_present = True
                     if line_in_section_counter == self.NUM_OF_LANGUAGES:
                         line_in_section_counter = 0
                         continue
@@ -136,6 +138,10 @@ class WestCoastLyricsPptCreator:
 should always be {self.NUM_OF_LANGUAGES}, but it is {line_in_section_counter} in a section')
 
                 line_in_section_counter += 1
+
+            if not is_new_section_separator_present:
+                raise ValueError(
+                        f'The new section token, \"{self.NEW_SECTION_TOKEN}\", does not exist in the file')
 
         print(f'Validation of the lyrics file, \"{lyrics_file_path}\", is completed successfully')
 

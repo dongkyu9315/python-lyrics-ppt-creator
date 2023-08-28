@@ -27,10 +27,6 @@ def create_app():
     def to_pptx():
         return render_template('to_pptx.html')
 
-    @app.route('/to_pptx_batch/')
-    def to_pptx_batch():
-        return render_template('to_pptx_batch.html')
-
     @app.route('/to_txt/')
     def to_txt():
         return render_template('to_txt.html')
@@ -47,6 +43,7 @@ def create_app():
     def how_to_use_wed_sermon():
         return render_template('how_to_use_wed_sermon.html')
 
+    # Main method getting called from index.html
     @app.route('/hymn_ppt/', methods=['POST'])
     def generate_hymn_ppt():
         working_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -94,35 +91,32 @@ def create_app():
 
         return send_file(memory_file, download_name='hymn_pptx.zip', as_attachment=True)
 
-    @app.route('/text_file/', methods=['POST'])
-    def submit_text_file():
-        if request.method == 'POST':
-            uuid_id = uuid.uuid4()
-            correct_file_ext = '.txt'
-            use_case = request.form['use_case']
+    # Main method getting called from to_pptx.html
+    @app.route('/text_files/', methods=['POST'])
+    def submit_text_files():
+        if request.method != 'POST':
+            return
 
+        uuid_id = uuid.uuid4()
+        correct_file_ext = '.txt'
+        use_case = request.form['use_case']
+        uploaded_files = request.files.getlist("filename[]")
+
+        if len(uploaded_files) == 1:
             try:
-                input_file_name = __save_input_file(request.files['filename'], uuid_id, correct_file_ext)
+                input_file_name = __save_input_file(uploaded_files[0], uuid_id, correct_file_ext)
             except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
             return redirect(url_for('generate_pptx_file',
                                     uuid_id=uuid_id, use_case=use_case, input_file_name=input_file_name))
 
-    @app.route('/text_files/', methods=['POST'])
-    def submit_text_files():
-        if request.method == 'POST':
-            uuid_id = uuid.uuid4()
-            correct_file_ext = '.txt'
-            uploaded_files = request.files.getlist("filename[]")
-            use_case = request.form['use_case']
+        try:
+            __save_input_files(uploaded_files, uuid_id, correct_file_ext)
+        except ValueError:
+            return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-            try:
-                __save_input_files(uploaded_files, uuid_id, correct_file_ext)
-            except ValueError:
-                return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
-
-            return redirect(url_for('generate_pptx_files', use_case=use_case, uuid_id=uuid_id))
+        return redirect(url_for('generate_pptx_files', use_case=use_case, uuid_id=uuid_id))
 
     @app.route('/pptx_file/<uuid_id>/<use_case>/<input_file_name>')
     def generate_pptx_file(uuid_id, use_case, input_file_name):
@@ -178,31 +172,30 @@ def create_app():
 
         return send_file(memory_file, download_name='hymn_pptx.zip', as_attachment=True)
 
-    @app.route('/pptx_file/', methods=['POST'])
-    def submit_pptx_file():
-        if request.method == 'POST':
-            uuid_id = uuid.uuid4()
-            correct_file_ext = '.pptx'
+    # Main method getting called from to_txt.html
+    @app.route('/pptx_files/', methods=['POST'])
+    def submit_pptx_files():
+        if request.method != 'POST':
+            return
+
+        uuid_id = uuid.uuid4()
+        correct_file_ext = '.pptx'
+        uploaded_files = request.files.getlist("filename[]")
+
+        if len(uploaded_files) == 1:
             try:
-                input_file_name = __save_input_file(request.files['filename'], uuid_id, correct_file_ext)
+                input_file_name = __save_input_file(uploaded_files[0], uuid_id, correct_file_ext)
             except ValueError:
                 return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
             return redirect(url_for('generate_text_file', uuid_id=uuid_id, input_file_name=input_file_name))
 
-    @app.route('/pptx_files/', methods=['POST'])
-    def submit_pptx_files():
-        if request.method == 'POST':
-            uuid_id = uuid.uuid4()
-            correct_file_ext = '.pptx'
-            uploaded_files = request.files.getlist("filename[]")
+        try:
+            __save_input_files(uploaded_files, uuid_id, correct_file_ext)
+        except ValueError:
+            return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
 
-            try:
-                __save_input_files(uploaded_files, uuid_id, correct_file_ext)
-            except ValueError:
-                return redirect(url_for('input_file_type_error', correct_file_ext=correct_file_ext))
-
-            return redirect(url_for('generate_text_files', uuid_id=uuid_id))
+        return redirect(url_for('generate_text_files', uuid_id=uuid_id))
 
     @app.route('/text_file/<uuid_id>/<input_file_name>')
     def generate_text_file(uuid_id, input_file_name):
