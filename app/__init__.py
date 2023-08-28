@@ -5,6 +5,7 @@ import shutil
 import uuid
 import zipfile
 
+from datetime import datetime
 from flask import Flask, redirect, render_template, request, send_file, url_for
 from werkzeug.utils import secure_filename
 from app.businesslogic.wed_sermon_ppt_creator import WedSermonLyricsPptCreator
@@ -78,9 +79,11 @@ def create_app():
 
         __delete_directory(output_file_directory)
 
-        print('Returning the zip file')
+        now_str = datetime.today().strftime('%Y-%m-%d')
+        zip_file_name = f'{now_str}-hymn_pptx.zip'
+        print(f'Returning the zip file, {zip_file_name}')
 
-        return send_file(memory_file, download_name='hymn_pptx.zip', as_attachment=True)
+        return send_file(memory_file, download_name=zip_file_name, as_attachment=True)
 
     # Main method getting called from to_pptx.html
     @app.route('/text_files/', methods=['POST'])
@@ -149,9 +152,11 @@ def create_app():
         __delete_directory(input_file_directory)
         __delete_directory(output_file_directory)
 
-        print('Returning the zip file')
+        now_str = datetime.today().strftime('%Y-%m-%d')
+        zip_file_name = f'{now_str}-hymn_pptx.zip'
+        print(f'Returning the zip file, {zip_file_name}')
 
-        return send_file(memory_file, download_name='hymn_pptx.zip', as_attachment=True)
+        return send_file(memory_file, download_name=zip_file_name, as_attachment=True)
 
     # Main method getting called from to_txt.html
     @app.route('/pptx_files/', methods=['POST'])
@@ -213,9 +218,11 @@ def create_app():
         __delete_directory(input_file_directory)
         __delete_directory(output_file_directory)
 
-        print('Returning the zip file')
+        now_str = datetime.today().strftime('%Y-%m-%d')
+        zip_file_name = f'{now_str}-hymn_txt.zip'
+        print(f'Returning the zip file, {zip_file_name}')
 
-        return send_file(memory_file, download_name='hymn_txt.zip', as_attachment=True)
+        return send_file(memory_file, download_name=zip_file_name, as_attachment=True)
 
     @app.route('/input_file_type_error/<correct_file_ext>')
     def input_file_type_error(correct_file_ext):
