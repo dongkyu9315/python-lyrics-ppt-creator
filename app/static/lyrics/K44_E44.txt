@@ -3,7 +3,7 @@
 44 찬송하는 소리 있어
 
 - 1
-Hark! Ten thou-sand harps and voic-es
+Hark! ten thou-sand harps and voic-es
 
 찬송하는 소리 있어
 
@@ -43,7 +43,7 @@ Al-le-lu-ia! A-men.
 할렐루야 아-멘
 
 - 2
-King of glo-ry, reign ev-er,
+King of glo-ry, reign for ev-er,
 
 하나님의 나라 권세
 
@@ -70,7 +70,7 @@ Hap-py ob-jects of Thy grace,
 -
 Des-tined to be-hold Thy face.
 
-세상 주관하시도다
+세상 주관 하시도다
 
 -
 Al-le-lu-ia! Al-le-lu-ia!
@@ -120,4 +120,4 @@ Al-le-lu-ia! Al-le-lu-ia!
 -
 Al-le-lu-ia! A-men. A-men.
 
-할렐루야 아-멘. 아-멘
+할렐루야 아멘. 아멘
