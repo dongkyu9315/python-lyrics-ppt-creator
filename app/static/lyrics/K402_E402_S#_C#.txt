@@ -3,13 +3,13 @@
 402 행군 나팔 소리로
 # 号角吹响了（翻译）
 - 1
-Bu0gle calls are ring-ing out,
+Bu-gle calls are ring-ing out,
 La corneta está sonando
 행군 나팔소리로
 号角吹响了
 -
 "For-ward" is the bat-tle shout,
-¨¡Adelante!¨ es el grito de batalla
+"¡Adelante!" es el grito de batalla
 주의 호령 났으니
 向前冲啊 是战争的呐喊
 -
@@ -38,7 +38,7 @@ Nos pondremos la corona
 의의 면류관
 我们要戴上冠冕
 -
-We shall wear a crown!
+We shall Wear a crown!
 Nos pondremos la corona
 받아쓰리라
 我们要戴上冠冕
@@ -118,7 +118,7 @@ Nos pondremos la corona
 의의 면류관
 我们要戴上冠冕
 -
-We shall wear a crown!
+We shall Wear a crown!
 Nos pondremos la corona
 받아쓰리라
 我们要戴上冠冕
@@ -198,7 +198,7 @@ Nos pondremos la corona
 의의 면류관
 我们要戴上冠冕
 -
-We shall wear a crown!
+We shall Wear a crown!
 Nos pondremos la corona
 받아쓰리라
 我们要戴上冠冕

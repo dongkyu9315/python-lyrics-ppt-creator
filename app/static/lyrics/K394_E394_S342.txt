@@ -9,7 +9,7 @@ Los que es-pe-ran al Se-ñor
 
 -
 Shall mount up, shall mount up,
-Se e-le-va-rán, Se e-le-va-rán;
+Se e-le-va-rán, se e-le-va-rán;
 올라가 올라가
 
 -
@@ -23,13 +23,13 @@ To-da lu-cha ven-ce-rán,
 모든 싸움 이기고
 
 -
-They shall con-quer in the gray,
+They shall con-quer in the fray,
 Qui-ta-rán to-da an-sie-dad;
 근심 걱정 벗은 후
 
 -
 Mount-ing up, mount-ing up!
-Se e-le-va-rán; Se e-le-va-rán;
+Se e-le-va-rán, Se e-le-va-rán;
 올라가 올라가
 
 -
@@ -89,12 +89,12 @@ Los per-di-dos qui-a-rán;
 
 -
 Search-ing on, search-ing on,
-Ca-mi-na-rán; Ca-mi-na-rán;
+Ca-mi-na-rán, Ca-mi-na-rán;
 걸어가 걸어가
 
 -
 Un-faint-ing all day.
-No se a-go-bia-rán;
+No a-go-bia-rán;
 고단치 않네
 
 -
@@ -149,7 +149,7 @@ La co-ro-na re-ci-bir;
 
 -
 Press-ing on, press-ing on,
-Co-rre-rán; Co-rre-rán;
+Co-rre-rán, Co-rre-rán;
 달려가 달려가
 
 -
@@ -209,7 +209,7 @@ Y su glo-ria yo ve-ré;
 
 -
 Mount-ing up, mount-ing up,
-Se e-le-va-rán; Se e-le-va-rán;
+Se e-le-va-rán, Se e-le-va-rán;
 올라가 올라가
 
 -

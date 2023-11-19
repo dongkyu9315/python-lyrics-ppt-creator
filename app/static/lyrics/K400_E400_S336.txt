@@ -1,9 +1,9 @@
-400 There’s a Royal Banner
+400 There's a Royal Banner
 336 Cual Pendón Hermoso
 400 주의 진리 위해 십자가 군기
 
 - 1
-There’s a roy-al ban-ner giv-en for dis-play
+There's a roy-al ban-ner giv-en for dis-play
 Cual pen-dón her-mo-so des-ple-gue-mos hoy
 주의 진리 위해 십자가 군기
 
@@ -29,7 +29,7 @@ A-de-lan-te, A-de-lan-te,
 
 -
 For Christ count ev-ery-thing but loss!
-En pos de nues-troSal-va-dor.
+En pos de nues-tro Sal-va-dor.
 주 예수만을 위하여
 
 -
@@ -38,12 +38,12 @@ Nos da go-zo y fe nues-tro Rey,
 목숨까지도 바치고
 
 -
-‘Neath the ban-ner of the cross!
+'Neath the ban-ner of the cross!
 A-de-lan-te con va-lor.
 싸움터로 나가세
 
 - 2
-Thought the foe may rage and gath-er as the flood,
+Though the foe may rage and gath-er as the flood,
 Pre-di-que-mos siem-pre lo que di-ce Dios
 원수들이 비록 강할지라도
 
@@ -78,7 +78,7 @@ Nos da go-zo y fe nues-tro Rey,
 목숨까지도 바치고
 
 -
-‘Neath the ban-ner of the cross!
+'Neath the ban-ner of the cross!
 A-de-lan-te con va-lor.
 싸움터로 나가세
 
@@ -118,12 +118,12 @@ Nos da go-zo y fe nues-tro Rey,
 목숨까지도 바치고
 
 -
-‘Neath the ban-ner of the cross!
+'Neath the ban-ner of the cross!
 A-de-lan-te con va-lor.
 싸움터로 나가세
 
 - 4
-When the glo-ry dawns ‘tis draw-ing ver-y near
+When the glo-ry dawns 'tis draw-ing ver-y near
 En el cie-lo nues-tro cán-ti-co se-rá
 원수들은 이미 예수의 손에
 
@@ -133,8 +133,8 @@ A-la-ban-zas a Je-sús;
 하나 없이 패하고
 
 -
-Then be-fore our King the foe shall dis-appear,
-Nues-tro co-ra-zón a-lli re-bo-sa-rá
+Then be-fore our King the foe shall dis-ap-pear,
+Nues-tro co-ra-zón a-llí re-bo-sa-rá
 주의 군기만이 영광스럽게
 
 -
@@ -158,6 +158,6 @@ Nos da go-zo y fe nues-tro Rey,
 목숨까지도 바치고
 
 -
-‘Neath the ban-ner of the cross!
+'Neath the ban-ner of the cross!
 A-de-lan-te con va-lor.
 싸움터로 나가세
