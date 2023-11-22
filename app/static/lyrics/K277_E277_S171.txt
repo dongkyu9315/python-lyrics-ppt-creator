@@ -1,4 +1,4 @@
-277 Far, Far away in Heathen Darkness Dwelling
+277 Far, Far Away in Heathen Darkness Dwelling
 171 Lejos Están Viviendo
 277 흑암에 사는 백성들을 보라
 
@@ -38,7 +38,7 @@ Id a pre-di-car al mun-do el e-van-ge-
 너는 가서 주의 복음 전하라
 
 -
-And lo, I am with you al-way."
+And lo, I am with you al-ways."
 Lio, Yo es-toy con vo-so-tros siem-pre."
 주가 너 항상 지키리라
 
@@ -78,7 +78,7 @@ Id a pre-di-car al mun-do el e-van-ge-
 너는 가서 주의 복음 전하라
 
 -
-And lo, I am with you al-way."
+And lo, I am with you al-ways."
 Lio, Yo es-toy con vo-so-tros siem-pre."
 주가 너 항상 지키리라
 
@@ -93,7 +93,7 @@ Lio, Yo es-toy con vo-so-tros siem-pre."
 주 음성 듣고 응답하여라
 
 -
-Je-sus hath died to save from death ap-pal-ling,
+Je-sus hath died to save from death ap-pall-ing,
 Cris-to mu-rió, pues él a to-dos a-ma;
 널 구원하려 예수 죽었으니
 
@@ -118,7 +118,7 @@ Id a pre-di-car al mun-do el e-van-ge-
 너는 가서 주의 복음 전하라
 
 -
-And lo, I am with you al-way."
+And lo, I am with you al-ways."
 Lio, Yo es-toy con vo-so-tros siem-pre."
 주가 너 항상 지키리라
 
@@ -158,6 +158,6 @@ Id a pre-di-car al mun-do el e-van-ge-
 너는 가서 주의 복음 전하라
 
 -
-And lo, I am with you al-way."
+And lo, I am with you al-ways."
 Lio, Yo es-toy con vo-so-tros siem-pre."
 주가 너 항상 지키리라
