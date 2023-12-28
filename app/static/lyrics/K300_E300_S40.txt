@@ -9,7 +9,7 @@ Si es-toy con Cris-to
 
 -
 He will make me glad;
-Me a-le-gra-ré
+Me a-le-gra-ré;
 나는 기뻐요
 
 -
@@ -19,7 +19,7 @@ He will give me plea-sure
 
 -
 When my heart is sad.
-No me in-quie-ta-ré
+No me in-quie-ta-ré;
 정말 즐거워
 
 -
@@ -29,7 +29,7 @@ Si es-toy con Cris-to
 
 -
 Hap-py I shall be;
-Me a-le-gra-ré
+Me a-le-gra-ré;
 나는 기뻐요
 
 -
@@ -39,7 +39,7 @@ A-ma a los hu-mil-des,
 
 -
 Lit-tle ones like me.
-Me lla-mó a mí
+Me lla-mó a mí.
 부르셨어요
 
 - 2
@@ -49,7 +49,7 @@ Si es-toy con Cris-to
 
 -
 He will hear my pray’r;
-Me a-bra-za-rá
+Me a-bra-za-rá;
 맞아 주시고
 
 -
@@ -59,7 +59,7 @@ Con su gran a-mor él
 
 -
 He my sins did bear.
-Me per-do-na-rá
+Me per-do-na-rá;
 용서하셔요
 
 -
@@ -69,7 +69,7 @@ Si es-toy con Cris-to
 
 -
 Hap-py I shall be;
-Me a-le-gra-ré
+Me a-le-gra-ré;
 나는 기뻐요
 
 -
@@ -79,7 +79,7 @@ A-ma a los hu-mil-des,
 
 -
 Lit-tle ones like me.
-Me lla-mó a mí
+Me lla-mó a mí.
 부르셨어요
 
 - 3
@@ -89,7 +89,7 @@ Si es-toy con Cris-to
 
 -
 He will take my hand;
-Me a-yu-da-rá
+Me a-yu-da-rá;
 손을 붙잡고
 
 -
@@ -99,7 +99,7 @@ Mi buen guí-a es Cris-to
 
 -
 To a bet-ter land.
-Me pro-te-ge-rá
+Me pro-te-ge-rá;
 인도하셔요
 
 -
@@ -109,7 +109,7 @@ Si es-toy con Cris-to
 
 -
 Hap-py I shall be;
-Me a-le-gra-ré
+Me a-le-gra-ré;
 나는 기뻐요
 
 -
@@ -119,5 +119,5 @@ A-ma a los-humil-des
 
 -
 Lit-tle ones like me.
-Me lla-mó a mí
+Me lla-mó a mí.
 부르셨어요

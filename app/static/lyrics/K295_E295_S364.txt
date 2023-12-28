@@ -20,7 +20,7 @@ Mas ¡oh, qué go-zo al des-per-tar
 -
 With-ing the pal-ace of the King!
 En el pa-la-cio de mi Rey!
-내 기쁨 한량없겠네
+내 기쁨 한량 없겠네
 
 -
 And I shall see Him face to face,
@@ -30,7 +30,7 @@ Y ca-ra a ca-ra le ve-ré,
 -
 And tell the sto-ry Saved by grace;
 Y vi-vi-ré con él
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 -
 And I shall see Him face to face,
@@ -40,7 +40,7 @@ A-llí, y pa-ra siem-pre can-ta-ré:
 -
 And tell the sto-ry Saved by grace.
 "Sal-va-do por su gra-cia fui".
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 - 2
 Some day my earth-ly house will fall,
@@ -70,7 +70,7 @@ Y ca-ra a ca-ra le ve-ré,
 -
 And tell the sto-ry Saved by grace;
 Y vi-vi-ré con él
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 -
 And I shall see Him face to face,
@@ -80,7 +80,7 @@ A-llí, y pa-ra siem-pre can-ta-ré:
 -
 And tell the sto-ry Saved by grace.
 "Sal-va-do por su gra-cia fui".
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 - 3
 Some day, when fades the gold-en sun
@@ -110,7 +110,7 @@ Y ca-ra a ca-ra le ve-ré,
 -
 And tell the sto-ry Saved by grace;
 Y vi-vi-ré con él
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 -
 And I shall see Him face to face,
@@ -120,7 +120,7 @@ A-llí, y pa-ra siem-pre can-ta-ré:
 -
 And tell the sto-ry Saved by grace.
 "Sal-va-do por su gra-cia fui".
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 - 4
 Some day: till then I'll then I'll watch and wait,
@@ -133,7 +133,7 @@ Y sé que pron-to lle-ga-rá;
 내 등불 밝게 켰다가
 
 -
-That when my Sav-iour ope's the gate,
+That when my Sav-iour open the gate,
 Ven-drá en su glo-ria mi Se-ñor
 주께서 문을 여실 때
 
@@ -150,7 +150,7 @@ Y ca-ra a ca-ra le ve-ré,
 -
 And tell the sto-ry Saved by grace;
 Y vi-vi-ré con él
-그 은혜 찬송하겠네
+그 은혜 찬송 하겠네
 
 -
 And I shall see Him face to face,
@@ -160,4 +160,4 @@ A-llí, y pa-ra siem-pre can-ta-ré:
 -
 And tell the sto-ry Saved by grace. A-men.
 "Sal-va-do por su gra-cia fui". A-mén.
-그 은혜 찬송하겠네 아멘
+그 은혜 찬송 하겠네 아멘
