@@ -26,19 +26,19 @@ def create_app():
 
     @app.route('/to_pptx/')
     def to_pptx():
-        return render_template('to_pptx.html')
+        return render_template('index.html')
 
     @app.route('/to_txt/')
     def to_txt():
-        return render_template('to_txt.html')
+        return render_template('index.html')
 
     @app.route('/how_to_use_west_coast_theme/')
     def how_to_use_west_coast_theme():
-        return render_template('how_to_use_west_coast_theme.html')
+        return render_template('index.html')
 
     @app.route('/how_to_use_wed_sermon/')
     def how_to_use_wed_sermon():
-        return render_template('how_to_use_wed_sermon.html')
+        return render_template('index.html')
 
     # Main method getting called from index.html
     @app.route('/hymn_ppt/', methods=['POST'])
